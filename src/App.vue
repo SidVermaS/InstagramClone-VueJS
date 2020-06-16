@@ -2,7 +2,6 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
     </div>
     <router-view/>
   </div>
@@ -29,4 +28,18 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+#input-group    {
+    text-align: left;
+}
+
+.custom_card  {
+  padding-top: 5%;
+  height: 100vh;
+}
+
+
+
+
+
 </style>
