@@ -22,7 +22,7 @@ export default  {
             headers: {
                 'Content-type': 'application/json',
                 'Accept': 'application/json',
-                'authorization': store.state.user.token===undefined?null:store.state.user.token
+                'authorization': store.state.user===undefined || store.state.user===null?null:store.state.user.token
             },
         }        
     },
@@ -33,7 +33,7 @@ export default  {
                 const options={
                     method: 'POST',
                     headers: this.headers,   
-                    body: JSON.stringift(formData)                    
+                    body: JSON.stringify(formData)                    
                 }
                 fetch(`${this.baseUrl}${url}`, options).then(response=> {
                     response.json().then(jsonData=> {
@@ -51,7 +51,7 @@ export default  {
                     method: 'GET',
                     headers: this.headers,
                 }
-                fetch(`${this.baseUrl}${this.url}`, options).then(response=>    {
+                fetch(`${this.baseUrl}${url}`, options).then(response=>    {
                     response.json().then(jsonData=> {
                         resolve({ status: response.status, body: jsonData })
                     })

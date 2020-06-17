@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-    </div>
     <router-view/>
   </div>
 </template>
@@ -29,7 +26,7 @@
   color: #42b983;
 }
 
-#input-group    {
+#custom_group    {
     text-align: left;
 }
 
@@ -37,7 +34,9 @@
   padding-top: 5%;
   height: 100vh;
 }
-
+.custom_button  {
+  margin-top: 10%;
+}
 
 
 
