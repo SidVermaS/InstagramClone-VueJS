@@ -1,6 +1,6 @@
 <template>
      <div :style="{'background-image': 'url(' + require('../assets/images/background.jpg') + ')'}">
-        <b-card no-body class="custom_card col-sm-12 col-md-4 mr-auto">            
+        <b-card no-body class="custom_card col-sm-12 col-md-4 ml-auto">            
             <b-form @submit.prevent="registerUser">
                 <b-img v-bind="mainProps" :src="require('../assets/images/app_logo.png')" rounded alt="App Logo"></b-img>
                 <b-form-group id="custom_group"
@@ -56,6 +56,7 @@
                     </b-form-input>
                 </b-form-group>
                 <b-button class="btn-block custom_button" type="submit" variant="primary">Register</b-button> 
+                <b-button v-on:click="navigate" class="btn-block" variant="outline-dark">Go back</b-button>
             </b-form>     
         </b-card>   
     </div>        
@@ -98,19 +99,22 @@
                         name: '',
                         role: ''
                     }
-                }   else    {
+                }   else if(!this.message)    {
                     this.message='Failed to connect'
                 }
-
-            }
-            
+            },
+            navigate: async function()  {
+                this.$router.back()
+            }    
             
         }
     }         
 </script>           
             
 <style scoped>            
-
+    .back_button    {
+        margin-top: 5%;
+    }
 
             
             

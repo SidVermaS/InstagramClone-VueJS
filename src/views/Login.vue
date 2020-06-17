@@ -1,7 +1,7 @@
 <template>
     <div :style="{'background-image': 'url(' + require('../assets/images/background.jpg') + ')'}">
-
-        <b-card no-body class="custom_card login_card col-sm-12 col-md-4 mx-auto">
+        <AlertDialog v-bind:message="message" ref="alertdialog" />
+        <b-card no-body class="custom_card login_card col-sm-12 col-md-4 ml-auto">
             <b-form @submit.prevent="loginUser">
                 <b-img v-bind="mainProps" :src="require('../assets/images/app_logo.png')" rounded alt="App Logo"></b-img>
                 <b-form-group
@@ -31,8 +31,8 @@
                     </b-form-input>   
                 </b-form-group> 
                 <b-button class="btn-block custom_button" type="submit" variant="primary">Login</b-button>   
-                <span class="custom_button">OR</span>
-                <b-button v-on:click="navigate" class="btn-block custom_button" variant="primary">Register</b-button>
+                <div class="or">OR</div>
+                <b-button v-on:click="navigate" class="btn-block" variant="primary">Register</b-button>
             </b-form>    
         </b-card>
     </div>    
@@ -40,6 +40,7 @@
 
 <script>
     import LocalStorageManager from '../mixins/local_storage_manager'
+    import AlertDialog from '../components/AlertDialog'
     import Connect from '../mixins/connect'
     import { mapActions } from 'vuex'
 
@@ -49,6 +50,9 @@
             LocalStorageManager,
             Connect
         ],
+        components: {
+            AlertDialog
+        },
         data()  {
             return  {
                 mainProps:  {
@@ -77,9 +81,10 @@
 
                     this.$router.replace('/')
 
-                }   else    {
+                }   else if(!this.message)    {
                     this.message='Failed to connect'
-                }            
+                }     
+                this.$refs.alertdialog.showDialog()      
             },
             navigate: async function()  {
                 this.$router.push('/register')
@@ -102,5 +107,7 @@
     }
 </script>
 <style scoped>
- 
+    .or {
+        margin: 1% 0% 1% 0%;
+    }
 </style>
