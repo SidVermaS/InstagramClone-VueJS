@@ -38,7 +38,23 @@
   margin-top: 10%;
 }
 
-
-
-
+.custom_background  {
+  background: #FAFAFA;
+}
+.custom_post  {
+  width: 40%;
+  height: 40;
+}
+.custom_user_background {
+  background: #fff;
+  float: right;
+}
+.custom_image {
+  width: 100%;
+  height: 100%;
+}
+.custom_user_photo  {
+  width: 5%;
+  height: 5%;
+}
 </style>

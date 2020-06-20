@@ -75,16 +75,18 @@
                 this.message=body['message']
                 if(status===200)    {
                     const user=body['user']
-
+                    user.token=`bearer ${user.token}`
                     this.setUser('user', user)
                     this.setStoreValue('user', JSON.stringify(user))
 
                     this.$router.replace('/')
 
-                }   else if(!this.message)    {
-                    this.message='Failed to connect'
-                }     
-                this.$refs.alertdialog.showDialog()      
+                }   else    {  
+                    if(!this.message)    {
+                        this.message='Failed to connect'
+                    }      
+                    this.$refs.alertdialog.showDialog()  
+                }    
             },
             navigate: async function()  {
                 this.$router.push('/register')

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+import store from '../store'
 import LocalStorageManager from '../mixins/local_storage_manager'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
@@ -33,7 +35,6 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next)=> {
   const result=LocalStorageManager.methods.getStoreValue('user')
-  console.log('res: ',result)
   if(result===null) {
     if(to.path==='/login' || to.path==='/register')  {
       next()
@@ -41,8 +42,10 @@ router.beforeEach((to, from, next)=> {
       next('/login')
     }
   } else if(result!==null && (to.path==='/login' || to.path==='/register'))  {
+    store.dispatch('setUser', JSON.parse(result))
     next('/')
   } else  {
+    store.dispatch('setUser', JSON.parse(result))
     next()
   }
 })

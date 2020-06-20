@@ -2,22 +2,24 @@ import store from '../store'
 
 export default  {
     data()  {
+        let mainUrl='http://localhost:3000/'
         return  {
-            baseUrl: 'http://192.168.43.229:3000/',
+            baseUrl: mainUrl,
+            baseUrlPostPhoto: `${mainUrl}uploads/posts/`, 
+            baseUrlUserPhoto: `${mainUrl}uploads/users/`,
             subUrl: {
                 register: 'register/',
                 login: 'login/',
                 post: 'post/',
                 user: 'user/',
-                reaction: 'reaction',
+                reaction: 'reaction/',
                 comment: 'comment/',
                 
 
             },
             childUrl:   {
                 edit: 'edit/',
-                editPassword: 'edit/password'
-
+                editPassword: 'edit/password/'
             },
             headers: {
                 'Content-type': 'application/json',
