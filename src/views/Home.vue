@@ -1,10 +1,14 @@
 <template>
   <div class="custom_background">
-    <center>
+    <span style="display: inline;">
       <div v-for="post in displayed_posts" :key="post.post_id">
         <Post :post="post" class="custom_post" />
-      </div>
-    </center> 
+      </div>      
+      <!-- <span style="display: inline;">
+          <b-img :src="`${this.baseUrlPostPhoto}${this.$store.state.user.photo_url}`" rounded="circle" class="custom_user_photo_side"></b-img>
+      </span> -->
+    </span> 
+    
   </div>
 </template>
 
@@ -59,7 +63,10 @@
   .custom_post  {
     margin-top: 3%;
   }    
-
+  .custom_user_photo_side {
+    width: 10%;
+    height: 10%;
+  }  
 
 
 
