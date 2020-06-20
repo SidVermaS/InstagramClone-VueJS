@@ -47,14 +47,25 @@
 }
 .custom_user_background {
   background: #fff;
-  float: right;
+  padding: 2% 2% 2% 3%;
+  text-align: left;
 }
 .custom_image {
   width: 100%;
   height: 100%;
 }
 .custom_user_photo  {
-  width: 5%;
-  height: 5%;
+  width: 8%;
+  height: 12%;
 }
+.custom_user_name {
+  font-weight: bold;
+  font-size: 90%;
+  margin-left: 2.5%;
+}
+.custom_post_caption  {
+  background: #fff;
+  text-align: left;
+}
+
 </style>

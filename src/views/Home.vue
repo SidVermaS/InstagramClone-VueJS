@@ -53,3 +53,16 @@
 // #3AACF7 blue
 
 </script>
+
+
+<style scoped>
+  .custom_post  {
+    margin-top: 3%;
+  }    
+
+
+
+
+
+
+</style>
