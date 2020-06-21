@@ -1,5 +1,5 @@
 <template>
-    <b-card no-body class="col-sm-12 col-md-6 mx-auto p-0">
+    <b-card no-body class="p-0">
         <div class="custom_user_background">
             <b-img :src="`${this.baseUrlUserPhoto}${post.user_photo_url}`" rounded="circle" class="custom_user_photo"></b-img>
             <span class="custom_user_name">{{post.name}}</span>

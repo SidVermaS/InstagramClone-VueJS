@@ -1,12 +1,20 @@
 <template>
   <div class="custom_background">
       <AlertDialog v-bind:message="message" ref="alertdialog" />
-      <div v-for="post in displayed_posts" :key="post.post_id">
-        <Post :post="post" v-on:show-dialog="showDialog"  class="custom_post"  />
-      </div>      
-      <!-- <span style="display: inline;">
+      <!-- <div class="col-sm-12 col-md-6"> -->
+      <b-row>
+        <b-col md="2" sm="0">
+        </b-col>
+        <b-col md="6" sm="12">
+            <div v-for="post in displayed_posts" :key="post.post_id">
+              <Post :post="post" v-on:show-dialog="showDialog"  class="custom_post"  />
+            </div>  
+        </b-col> 
+        <b-col md="4" sm="0">
           <b-img :src="`${this.baseUrlPostPhoto}${this.$store.state.user.photo_url}`" rounded="circle" class="custom_user_photo_side"></b-img>
-      </span> -->
+        </b-col>
+      </b-row>
+     <!-- </div>   -->
     
   </div>
 </template>
