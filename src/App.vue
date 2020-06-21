@@ -85,7 +85,12 @@
   width: 104%;
   height: 1px;
   background: lightgrey;
-  margin: -2% 0% 0% -2%;
+  margin: 0% 0% 0% -2%;
 }
-
+.custom_comments  {
+  margin-bottom: 2%;
+}
+.custom_comments_count  {
+  margin-bottom: 0%;
+}
 </style>

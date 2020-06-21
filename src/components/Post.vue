@@ -1,5 +1,5 @@
 <template>
-    <b-card no-body class="col-sm-12 col-md-6 p-0">
+    <b-card no-body class="col-sm-12 col-md-6 mx-auto p-0">
         <div class="custom_user_background">
             <b-img :src="`${this.baseUrlUserPhoto}${post.user_photo_url}`" rounded="circle" class="custom_user_photo"></b-img>
             <span class="custom_user_name">{{post.name}}</span>
@@ -17,18 +17,24 @@
                 <b-icon icon="chat" scale="1.6" style="margin: 0% 0% 0.35% 4%;"></b-icon>
             </div>
 
-            <p class="custom_caption_user_name custom_caption_post_reaction">{{post.reactions}} reacts</p>
+            <p class="custom_caption_user_name custom_caption_post_reaction">{{post.reactions_count}} reacts</p>
             <span class="custom_caption_user_name">{{post.name}}</span>
             <span class="custom_caption_text">{{post.caption}}</span> 
-            <p class="custom_caption_text" style="color: #A9A9A9;">View all {{post.comments}} comments</p>   
+            <p class="custom_caption_text custom_comments_count" style="color: #A9A9A9;">View all {{post.comments_count}} comments</p> 
+            <div v-for="(comment, index) in post.comments" :key="index">
+                <span>
+                    <span class="custom_caption_user_name">{{comment.name}}</span>
+                    <span class="custom_caption_text">{{comment.comment_text}}</span>
+                </span>
+            </div> 
             <div class="custom_comment_line"></div>             
             <b-input-group>
                <b-form-textarea              
                     rows="1" max-rows="2" placeholder="Add a comment..."
-                    class="custom_textarea_comment" size="sm">
+                    class="custom_textarea_comment" size="sm" v-model="comment_text">
                 </b-form-textarea>   
                 <b-input-group-append>    
-                    <span class="custom_textarea_comment_button">Post</span>
+                    <span v-on:click="addComment" class="custom_textarea_comment_button">Post</span>
                 </b-input-group-append>
             </b-input-group>
             
@@ -48,12 +54,42 @@
 
     export default  {
         name: 'Post',
-        mixins: [Connect],
-        props:  ['post'],    
+        mixins: [ Connect ],
+        props:  ['post', ],    
         data()  {
             return  {
+                comment_text: '',
             }
         },    
+        methods:    {
+            async addComment()    {
+                if(this.comment_text!=='')  {
+                    const comment={
+                        comment_text: this.comment_text,
+                        post_id: this.post.post_id,
+                        user_id: this.$store.state.user.user_id,
+                        name: this.$store.state.user.name                    }
+                   
+                    const { status, body }=await this.postRequest(this.subUrl.comment, comment)
+                    const message=body['message']
+
+                    if(status===201)  {
+                         this.comment_text=''
+                        if(this.post.comments===undefined) {
+                            this.post.comments=[]
+                        }
+                        this.post.comments.push(comment)
+
+                    } else if(!message)  {
+                        message='Failed to connect'
+                        this.emit('show-dialog', message)                        
+                    } else  {
+                        this.emit('show-dialog',message)
+                    }
+                }
+            },
+             
+        },
         computed:   {
         }    
 
