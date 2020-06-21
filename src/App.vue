@@ -41,13 +41,9 @@
 .custom_background  {
   background: #FAFAFA;
 }
-.custom_post1  {
-  width: 50%;
-  height: 50%;
-}
 .custom_user_background {
   background: #fff;
-  padding: 0% 2% 2% 0%;
+  padding: 2% 0% 2% 2%;
   text-align: left;
 }
 .custom_image {
@@ -55,8 +51,8 @@
   height: 100%;
 }
 .custom_user_photo  {
-  width: 8%;
-  height: 12%;
+  width: 7%;
+  height: 9%;
 }
 .custom_user_name {
   font-weight: bold;
@@ -71,7 +67,10 @@
 .custom_post_caption  {
   background: #fff;
   text-align: left;
-  padding: 2% 2% 2% 2%;
+  padding: 2% 2% 0% 2%;
+}
+.custom_actions {
+  margin-left: 1%;
 }
 .custom_caption_text  {
   font-size: 90%;
@@ -82,4 +81,11 @@
 .custom_caption_post_reaction {
   margin-top: 2%;
 }
+.custom_comment_line  {
+  width: 104%;
+  height: 1px;
+  background: lightgrey;
+  margin: -2% 0% 0% -2%;
+}
+
 </style>

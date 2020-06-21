@@ -1,13 +1,11 @@
 <template>
   <div class="custom_background">
-    <span style="display: inline;">
-      <div v-for="post in displayed_posts" :key="post.post_id">
-        <Post :post="post" class="custom_post" />
+      <div v-for="post in displayed_posts" :key="post.post_id" style="margin-left: 15%;">
+        <Post :post="post" class="custom_post"  />
       </div>      
       <!-- <span style="display: inline;">
           <b-img :src="`${this.baseUrlPostPhoto}${this.$store.state.user.photo_url}`" rounded="circle" class="custom_user_photo_side"></b-img>
       </span> -->
-    </span> 
     
   </div>
 </template>
