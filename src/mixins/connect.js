@@ -70,7 +70,7 @@ export default  {
                     headers: this.headers,
                     body: JSON.stringify(formData)                
                 }
-                fetch(`${this.baseUrl}${this.url}`, options).then(response=>    {
+                fetch(`${this.baseUrl}${url}`, options).then(response=>    {
                     response.json().then(jsonData=> {
                         resolve({ status: response.status, body: jsonData })
                     })

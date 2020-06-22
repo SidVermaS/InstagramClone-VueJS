@@ -1,21 +1,47 @@
 <template>
   <div class="custom_background">
-      <AlertDialog v-bind:message="message" ref="alertdialog" />
-      <!-- <div class="col-sm-12 col-md-6"> -->
+      <!-- <AlertDialog v-bind:message="message" ref="alertdialog" />
       <b-row>
         <b-col md="2" sm="0">
         </b-col>
         <b-col md="6" sm="12">
-            <div v-for="post in displayed_posts" :key="post.post_id">
-              <Post :post="post" v-on:show-dialog="showDialog"  class="custom_post"  />
+            <div v-for="(post, index) in posts" :key="post.post_id">
+              <Post :post="post" :index="index" v-on:give-reaction="giveReaction"  v-on:show-dialog="showDialog" class="custom_post"  />
             </div>  
         </b-col> 
         <b-col md="4" sm="0">
-          <b-img :src="`${this.baseUrlPostPhoto}${this.$store.state.user.photo_url}`" rounded="circle" class="custom_user_photo_side"></b-img>
+               
         </b-col>
-      </b-row>
-     <!-- </div>   -->
-    
+      </b-row> -->
+              <BootstrapSidebar
+      :initial-show="initialShow"
+      :links="links"
+      :header="header"
+      :fa="true"
+      @sidebarChanged="onSidebarChanged"
+    >
+      <template v-slot:navbar>
+        <b-navbar
+          id="mainNavbar"
+          toggleable="lg"
+          type="light"
+          variant="light"
+          fixed="top"
+        >
+          <b-navbar-nav>
+            <b-nav-item>
+              Navbar
+            </b-nav-item>
+          </b-navbar-nav>
+        </b-navbar>
+      </template>
+
+      <template v-slot:content>
+        <b-container style="margin-top: 56px">
+          <router-view />
+        </b-container>
+      </template>
+    </BootstrapSidebar>
   </div>
 </template>
 
@@ -23,6 +49,7 @@
   import Vuex from 'vuex'
   import Connect from '../mixins/connect'
   import Post from '../components/Post'
+  import Suggestions from '../components/Suggestions'
   import AlertDialog from '../components/AlertDialog'
   export default {
     name: 'Home',
@@ -31,6 +58,7 @@
     ],
     components: {
       Post,
+      Suggestions,
       AlertDialog
     },
     data()  {
@@ -50,13 +78,34 @@
         if(status===200)  {
 
           this.posts.push(...body['posts'])
-          this.$set(this.displayed_posts=[...this.posts])
+          // this.$set(this.displayed_posts=[...this.posts])
         } else if(!this.message)  {
           this.message='Failed to connect'
           this.$refs.alertdialog.showDialog()
         } else  {
           this.$refs.alertdialog.showDialog()
         }
+      },
+      async giveReaction(reaction)  {
+        
+        const formData={ status: reaction.status, post_id: parseInt(reaction.post_id), user_id: parseInt(reaction.user_id) }
+        
+        const { status, body }=await this.patchRequest(`${this.subUrl.reaction}`, formData)
+        this.message=body['message']
+        if(status===200)  {
+          this.posts[reaction.index].status=reaction.status
+          if(reaction.status==='like') {
+            this.posts[reaction.index].reactions_count=this.posts[reaction.index].reactions_count+1
+          } else  {
+            this.posts[reaction.index].reactions_count=this.posts[reaction.index].reactions_count-1
+          }
+        }   else    {  
+          if(!this.message)    {
+              this.message='Failed to connect'
+          }      
+          this.$refs.alertdialog.showDialog()  
+        }  
+
       },
       async showDialog(sentMessage)  {
         this.message=sentMessage
@@ -78,10 +127,7 @@
   .custom_post  {
     margin-top: 3%;
   }    
-  .custom_user_photo_side {
-    width: 10%;
-    height: 10%;
-  }  
+
 
 
 

@@ -12,8 +12,8 @@
             <b-icon v-if="post.status==='dislike'" icon="person-dash-fill" scale="1.6" variant="primary" class="custom_hand_thumb_doswn"></b-icon>
             <b-icon v-else icon="person-dash" scale="1.6" class="custom_hand_thumb_down"></b-icon> -->
             <div class="custom_actions">
-                <b-icon v-if="post.status==='like'" icon="heart-fill" variant="danger" scale="1.6"></b-icon>
-                <b-icon v-else icon="heart" scale="1.6" ></b-icon>
+                <b-icon v-if="post.status==='like'" icon="heart-fill" variant="danger" scale="1.6" v-on:click="giveReaction"></b-icon>
+                <b-icon v-else icon="heart" scale="1.6" v-on:click="giveReaction"></b-icon>
                 <b-icon icon="chat" scale="1.6" style="margin: 0% 0% 0.35% 4%;"></b-icon>
             </div>
 
@@ -55,7 +55,7 @@
     export default  {
         name: 'Post',
         mixins: [ Connect ],
-        props:  ['post', ],    
+        props:  ['post', 'index', ],    
         data()  {
             return  {
                 comment_text: '',
@@ -88,7 +88,11 @@
                     }
                 }
             },
-             
+            async giveReaction()    {
+                const reaction={ status: this.post.status===null || this.post.status!=='like'?'like':'remove', post_id: this.post.post_id, user_id: this.post.user_id, index: this.index }    
+                
+                this.$emit('give-reaction', reaction) 
+           },
         },
         computed:   {
         }    
