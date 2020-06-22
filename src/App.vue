@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+     <b-navbar type="light" variant="info" fixed="top">
+      <b-navbar-brand tag="h1" class="mb-0">BootstrapVue</b-navbar-brand>
+    </b-navbar>
     <router-view/>
   </div>
 </template>
@@ -90,7 +93,7 @@
 .custom_comments  {
   margin-bottom: 2%;
 }
-.custom_comments_count  {
-  margin-bottom: 0%;
+.custom_faded_color {
+  color: #A9A9A9;
 }
 </style>

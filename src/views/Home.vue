@@ -1,47 +1,20 @@
 <template>
   <div class="custom_background">
-      <!-- <AlertDialog v-bind:message="message" ref="alertdialog" />
-      <b-row>
-        <b-col md="2" sm="0">
-        </b-col>
-        <b-col md="6" sm="12">
-            <div v-for="(post, index) in posts" :key="post.post_id">
-              <Post :post="post" :index="index" v-on:give-reaction="giveReaction"  v-on:show-dialog="showDialog" class="custom_post"  />
-            </div>  
-        </b-col> 
-        <b-col md="4" sm="0">
-               
-        </b-col>
-      </b-row> -->
-              <BootstrapSidebar
-      :initial-show="initialShow"
-      :links="links"
-      :header="header"
-      :fa="true"
-      @sidebarChanged="onSidebarChanged"
-    >
-      <template v-slot:navbar>
-        <b-navbar
-          id="mainNavbar"
-          toggleable="lg"
-          type="light"
-          variant="light"
-          fixed="top"
-        >
-          <b-navbar-nav>
-            <b-nav-item>
-              Navbar
-            </b-nav-item>
-          </b-navbar-nav>
-        </b-navbar>
-      </template>
-
-      <template v-slot:content>
-        <b-container style="margin-top: 56px">
-          <router-view />
-        </b-container>
-      </template>
-    </BootstrapSidebar>
+      <AlertDialog v-bind:message="message" ref="alertdialog" />
+      <b-container fluid=true>
+        <b-row>
+          <b-col md="2" sm="0">
+          </b-col>
+          <b-col md="6" sm="12">
+              <span v-for="(post, index) in posts" :key="post.post_id">
+                <Post :post="post" :index="index" v-on:give-reaction="giveReaction"  v-on:show-dialog="showDialog" class="custom_post"  />
+              </span>  
+          </b-col> 
+          <b-col md="4" sm="0">
+              <Suggestions class="position-fixed w-100 h-100" />
+          </b-col>
+        </b-row>
+      </b-container>
   </div>
 </template>
 
