@@ -34,7 +34,7 @@
                     class="custom_textarea_comment" size="sm" v-model="comment_text">
                 </b-form-textarea>   
                 <b-input-group-append>    
-                    <span v-on:click="addComment" class="custom_textarea_comment_button">Post</span>
+                    <span v-on:click="addComment" class="custom_textarea_comment_button custom_secondary_color">Post</span>
                 </b-input-group-append>
             </b-input-group>
             
@@ -123,8 +123,7 @@
     } 
     .custom_textarea_comment_button  {
        font-size: 80%;
-       font-weight: 700;
-       color: #3AACF7; 
+       font-weight: 700;       
        text-align: center;
        padding: 50% 0% 0% 0%;
     }

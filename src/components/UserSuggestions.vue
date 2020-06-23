@@ -1,0 +1,72 @@
+<template>
+    <div>
+        <b-row>
+            <b-col cols="3">
+                <b-img :src="`${this.baseUrlPostPhoto}${this.$store.state.user.photo_url}`" rounded="circle" id="custom_user_photo" style="display: inline-block;">
+                </b-img>
+                <span style="display: inline-block;">
+                <p id="custom_user_name">{{this.$store.state.user.name}}</p>      
+                <span id="custom_user_role" class="custom_faded_color">{{this.$store.state.user.role}}</span>           
+                </span>
+            </b-col>    
+            <b-col cols="1">
+                  <span class="custom_secondary_color" id="custom_view">View</span>
+            </b-col>
+        </b-row>
+    </div>
+</template>
+         
+<script>
+import Vuex from 'vuex'
+import Connect from '../mixins/connect' 
+
+export default {
+    name: 'UserSuggestions',
+    mixins: [Connect],
+    props:  ['user'],
+    methods:    {
+
+    }
+    
+         
+
+            
+            
+            
+
+    
+         
+
+            
+            
+            
+
+    
+         
+}
+</script>           
+            
+<style scoped>        
+    #custom_user_name {
+        font-weight: bold;
+        font-size: 79.5%;     
+        padding: 10% 0% 0% 0%;  
+        margin-bottom: -10%;
+    }
+    #custom_user_role    {
+        font-size: 79.5%;
+    }
+    #custom_user_photo  {
+        width: 10.5%;
+        height: 60.5%;
+        margin: -5% 3% 0% 0%; 
+    }   
+    #custom_view    {
+        font-size: 75%;
+        
+    }
+            
+            
+            
+
+</style>

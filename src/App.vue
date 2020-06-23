@@ -43,6 +43,7 @@
 
 .custom_background  {
   background: #FAFAFA;
+  padding-top: 5%;
 }
 .custom_user_background {
   background: #fff;
@@ -96,4 +97,12 @@
 .custom_faded_color {
   color: #A9A9A9;
 }
+.custom_secondary_color {
+  color: #3AACF7; 
+}
+.custom_font_size {
+  font-weight: bold;
+}
+
+
 </style>
