@@ -1,28 +1,24 @@
 <template>
     <div id="custom_suggestion">    
     
-                <b-img :src="`${this.baseUrlPostPhoto}${this.$store.state.user.photo_url}`" rounded="circle" id="custom_user_photo_side" style="display: inline-block;"></b-img>
+                <b-img :src="`${this.baseUrlUserPhoto}${this.$store.state.user.photo_url}`" rounded="circle" id="custom_user_photo_side" style="display: inline-block;"></b-img>
                 <span style="display:inline-block;">           
                     <p id="custom_user_name">{{this.$store.state.user.name}}</p>      
                     <span id="custom_user_role" class="custom_faded_color">{{this.$store.state.user.role}}</span>
                 </span>
-              
-                    <!-- <span style="display: inline-block;">
-                        <span class="custom_faded_color custom_personal_suggestion">Suggestions For You</span>
-                        <div v-for="(user, index) in users" :key="index">
-                            <UserSuggestions :user="user" />  
-                        </div>         
-                    </span> 
-                    <span style="display: inline-block;">
-                        <span class="custom_personal_suggestion custom_font_size">See All</span>
-                        <div v-for="(user, index) in users" :key="index" id="custom_view">
-                            <span class="custom_secondary_color" >View</span>
-                        </div> 
-                    </span> -->
-                     <div v-for="(user, index) in users" :key="index">
-                            <UserSuggestions :user="user" />  
+                    <b-row style="margin-top: 1%;">
+                        <b-col cols="3">
+                            <span class="custom_faded_color custom_personal_suggestion custom_font_size" >Suggestions For You</span>
+                        </b-col>
+                        <b-col cols="1">
+                            <span class="custom_personal_suggestion custom_font_size" style="margin-left: -150%;">See All</span>
+                        </b-col>
+                    </b-row>
+                    <div style="margin-top: 0.7%; ">
+                        <div v-for="(user, index) in users" :key="index" >
+                            <UserSuggestions :user="user" :index="index" v-on:navigate-to-user="navigateToUser" />  
                         </div>   
-                
+                    </div>
 
 
 
@@ -51,11 +47,25 @@
             retrieveAllUsers: async function()    {
                 const { status, body }=await this.getRequest(`${this.subUrl.user}?page=0`)
                 if(status===200)    {
-                    console.log(body['users'].indexOf({ user_id: this.$store.state.user.user_id }))
-                    this.users.push(...body['users'])
-                }     
-
-
+                    if(body['users'])   {
+                        let index
+                        body['users'].filter((user, i)=>   {
+                            if(user.user_id===this.$store.state.user.user_id)   {
+                                index=i
+                            } 
+                        })
+                        if(index!==undefined)   {
+                            body['users'].splice(index,1)
+                        }
+                        if(body['users'].length>5)  {
+                            body['users'].splice(5)
+                        }
+                        this.users.push(...body['users']) 
+                    }
+                } 
+            },
+            navigateToUser: async function(user_id)   {
+                this.$router.push({ name: 'User', params: { user_id: user_id }})
             }    
         },
         created() {
@@ -74,7 +84,7 @@
         margin: -1.3% 1% 0% 0%;
     }  
     #custom_suggestion  {
-        padding: 3.5% 0% 0% 0%;
+        padding: 8% 0% 0% 2.5%;
         text-align: left;
         float: left;
     }
@@ -89,10 +99,11 @@
     }
     #custom_user_photo  {
         width: 1%;
-        height: 3%;    
+        height: 3%;  
     } 
     .custom_personal_suggestion {
-        font-size: 79.5%;
+        font-size: 79.5%;        
+        
     }
     #custom_view    {
         font-size: 75%;

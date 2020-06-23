@@ -42,8 +42,12 @@
 }
 
 .custom_background  {
-  background: #FAFAFA;
-  padding-top: 5%;
+  background: #f5f5f5;
+  padding: 0%;
+  margin: 0%;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
 }
 .custom_user_background {
   background: #fff;

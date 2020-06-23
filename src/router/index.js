@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import store from '../store'
 import LocalStorageManager from '../mixins/local_storage_manager'
 import Home from '../views/Home.vue'
+import User from '../views/User.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
@@ -14,6 +15,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/user/:user_id',
+    name: 'User',
+    component: User
   },
   {
     path: '/login',

@@ -1,16 +1,18 @@
 <template>
     <div>
-        <b-row>
+        <b-row >
             <b-col cols="3">
-                <b-img :src="`${this.baseUrlPostPhoto}${this.$store.state.user.photo_url}`" rounded="circle" id="custom_user_photo" style="display: inline-block;">
-                </b-img>
-                <span style="display: inline-block;">
-                <p id="custom_user_name">{{this.$store.state.user.name}}</p>      
-                <span id="custom_user_role" class="custom_faded_color">{{this.$store.state.user.role}}</span>           
+                <span v-on:click="navigateToUser">
+                    <b-img :src="`${this.baseUrlUserPhoto}${this.user.photo_url}`" rounded="circle"   id="custom_user_photo" style="display: inline-block;">
+                    </b-img>
+                    <span  style="display: inline-block;">
+                        <p id="custom_user_name">{{this.user.name}}</p>      
+                        <span id="custom_user_role" class="custom_faded_color">{{this.user.role}}</span>           
+                    </span>
                 </span>
             </b-col>    
-            <b-col cols="1">
-                  <span class="custom_secondary_color" id="custom_view">View</span>
+            <b-col cols="1" style="margin-top: 1%;">
+                <span  v-on:click="navigateToUser" class="custom_secondary_color" id="custom_view">View</span>
             </b-col>
         </b-row>
     </div>
@@ -23,9 +25,11 @@ import Connect from '../mixins/connect'
 export default {
     name: 'UserSuggestions',
     mixins: [Connect],
-    props:  ['user'],
+    props:  ['user', 'index'],
     methods:    {
-
+        navigateToUser: async function()    {
+            this.$emit('navigate-to-user', this.user.user_id)
+        }
     }
     
          
@@ -63,7 +67,7 @@ export default {
     }   
     #custom_view    {
         font-size: 75%;
-        
+        margin: 0% 0% 0% -140%;
     }
             
             

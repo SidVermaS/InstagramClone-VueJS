@@ -3,14 +3,14 @@
       <AlertDialog v-bind:message="message" ref="alertdialog" />
       <b-container fluid=true>
         <b-row>
-          <b-col md="2" sm="0">
+          <b-col lg="2" sm="0">
           </b-col>
-          <b-col md="6" sm="12">
+          <b-col lg="6" sm="12">
               <span v-for="(post, index) in posts" :key="post.post_id">
-                <Post :post="post" :index="index" v-on:give-reaction="giveReaction"  v-on:show-dialog="showDialog" class="custom_post"  />
+                <Post :post="post" :index="index" v-on:give-reaction="giveReaction" v-on:navigate-to-user="navigateToUser" v-on:show-dialog="showDialog" class="custom_post"  />
               </span>  
           </b-col> 
-          <b-col md="4" sm="0">
+          <b-col lg="4" sm="0">
               <Suggestions class="position-fixed w-100 h-100" />
           </b-col>
         </b-row>
@@ -51,7 +51,6 @@
         if(status===200)  {
 
           this.posts.push(...body['posts'])
-          // this.$set(this.displayed_posts=[...this.posts])
         } else if(!this.message)  {
           this.message='Failed to connect'
           this.$refs.alertdialog.showDialog()
@@ -80,13 +79,16 @@
         }  
 
       },
+      navigateToUser: async function(user_id)   {
+            this.$router.push({ name: 'User', params: { user_id: user_id }})
+      },
       async showDialog(sentMessage)  {
         this.message=sentMessage
         this.$refs.alertdialog.showDialog()
       }
       
     },
-    mounted()  {
+    created()  {
       this.retrieveAllPosts()
     }
   }

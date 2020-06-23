@@ -1,8 +1,10 @@
 <template>
     <b-card no-body class="p-0">
         <div class="custom_user_background">
+            <span v-on:click="navigateToUser">
             <b-img :src="`${this.baseUrlUserPhoto}${post.user_photo_url}`" rounded="circle" class="custom_user_photo"></b-img>
             <span class="custom_user_name">{{post.name}}</span>
+            </span>
         </div>
         <b-img :src="`${this.baseUrlPostPhoto}${post.photo_url}`" class="custom_image"></b-img>
         <div class="custom_post_caption">
@@ -93,6 +95,9 @@
                 
                 this.$emit('give-reaction', reaction) 
            },
+            navigateToUser: async function()    {
+                this.$emit('navigate-to-user', this.post.user_id)
+            }
         },
         computed:   {
         }    
