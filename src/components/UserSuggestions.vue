@@ -61,13 +61,13 @@ export default {
         font-size: 79.5%;
     }
     #custom_user_photo  {
-        width: 10.5%;
-        height: 60.5%;
+        width: 35px;
+        height: 35px;
         margin: -5% 3% 0% 0%; 
     }   
     #custom_view    {
         font-size: 75%;
-        margin: 0% 0% 0% -140%;
+        margin: 0% 0% 0% -100%;
     }
             
             

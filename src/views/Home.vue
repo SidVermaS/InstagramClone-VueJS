@@ -5,13 +5,13 @@
         <b-row>
           <b-col lg="2" sm="0">
           </b-col>
-          <b-col lg="6" sm="12">
+          <b-col lg="7" sm="12">
               <span v-for="(post, index) in posts" :key="post.post_id">
                 <Post :post="post" :index="index" v-on:give-reaction="giveReaction" v-on:navigate-to-user="navigateToUser" v-on:show-dialog="showDialog" class="custom_post"  />
               </span>  
           </b-col> 
-          <b-col lg="4" sm="0">
-              <Suggestions class="position-fixed w-100 h-100" />
+          <b-col lg="1" sm="0">
+              <Suggestions class="position-fixed w-100 h-100 custom_suggestions" />
           </b-col>
         </b-row>
       </b-container>
@@ -100,9 +100,10 @@
 
 <style scoped>
   .custom_post  {
-    margin-top: 3%;
+    margin-top: 10%;
   }    
-
+  .custom_suggestions {
+  }
 
 
 

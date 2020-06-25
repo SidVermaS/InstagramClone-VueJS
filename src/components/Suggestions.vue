@@ -11,7 +11,7 @@
                             <span class="custom_faded_color custom_personal_suggestion custom_font_size" >Suggestions For You</span>
                         </b-col>
                         <b-col cols="1">
-                            <span class="custom_personal_suggestion custom_font_size" style="margin-left: -150%;">See All</span>
+                            <span class="custom_personal_suggestion custom_font_size" style="margin-left: -110%;">See All</span>
                         </b-col>
                     </b-row>
                     <div style="margin-top: 0.7%; ">
@@ -79,12 +79,12 @@
     #custom_user_photo_side {
           /* width: 10%;
         height: 95%; */
-        width: 4.5%;
-        height: 10.5%;
+        width: 55px;
+        height: 55px;
         margin: -1.3% 1% 0% 0%;
     }  
     #custom_suggestion  {
-        padding: 8% 0% 0% 2.5%;
+        padding: 8% 0% 0% 1.25%;
         text-align: left;
         float: left;
     }
