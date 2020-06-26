@@ -1,24 +1,24 @@
 <template>
     <div id="custom_suggestion">    
-    
-                <b-img :src="`${this.baseUrlUserPhoto}${this.$store.state.user.photo_url}`" rounded="circle" id="custom_user_photo_side" style="display: inline-block;"></b-img>
-                <span style="display:inline-block;">           
-                    <p id="custom_user_name">{{this.$store.state.user.name}}</p>      
-                    <span id="custom_user_role" class="custom_faded_color">{{this.$store.state.user.role}}</span>
-                </span>
-                    <b-row style="margin-top: 1%;">
-                        <b-col cols="3">
-                            <span class="custom_faded_color custom_personal_suggestion custom_font_size" >Suggestions For You</span>
-                        </b-col>
-                        <b-col cols="1">
-                            <span class="custom_personal_suggestion custom_font_size" style="margin-left: -110%;">See All</span>
-                        </b-col>
-                    </b-row>
-                    <div style="margin-top: 0.7%; ">
-                        <div v-for="(user, index) in users" :key="index" >
-                            <UserSuggestions :user="user" :index="index" v-on:navigate-to-user="navigateToUser" />  
-                        </div>   
-                    </div>
+
+        <b-img :src="`${this.baseUrlUserPhoto}${this.$store.state.user.photo_url}`" rounded="circle" id="custom_user_photo_side" style="display: inline-block;"></b-img>
+        <span style="display:inline-block;">           
+            <p id="custom_user_name">{{this.$store.state.user.name}}</p>      
+            <span id="custom_user_role" class="custom_faded_color">{{this.$store.state.user.role}}</span>
+        </span>
+            <b-row style="margin-top: 1%;">
+                <b-col cols="3">
+                    <span class="custom_faded_color custom_personal_suggestion custom_font_size" >Suggestions For You</span>
+                </b-col>
+                <b-col cols="1">
+                    <span class="custom_personal_suggestion custom_font_size" style="margin-left: -110%;">See All</span>
+                </b-col>
+            </b-row>
+            <div style="margin-top: 0.7%; ">
+                <div v-for="(user, index) in users" :key="index" >
+                    <UserSuggestions :user="user" :index="index" v-on:navigate-to-user="navigateToUser" />  
+                </div>   
+            </div>
 
 
 
