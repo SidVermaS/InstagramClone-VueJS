@@ -1,43 +1,57 @@
 <template>
     <div class="custom_background custom_user_profile_background">
         <AlertDialog :message="this.message" ref="alertdialog"  />
-        <div v-if="this.user!==null" style="text-align: left;">            
-                <span style="display: inline-block;" class="">
+        <div v-if="this.user!==null" style="text-align: left;">   
+            <b-row>
+                <b-col cols="1">
                     <b-img :src="`${this.baseUrlUserPhoto}${this.user.photo_url}`" rounded="circle" class="custom_user_profile_photo"></b-img>
-                </span>
-                
-                    <!-- <span style="margin-left: 0%;"> -->
-                        <span style="font-size: 158%; display: inline-block; margin: 0% 0% 0% 10%;">
-                            {{this.user.name}}
-                        </span>
-                        <span style="margin: 0% 3.5% 0% 3%; display: inline-block;">
-                            <b-button v-if="this.$store.state.user.user_id===this.user.user_id" class="p-1 custom_b-button">Edit</b-button>
-                            <b-button v-else class="p-1 custom_b-button">Call</b-button>
-                        </span>
-                        <span>
-                            <b-icon icon="three-dots" scale="1.6" class="custom_more_icon"></b-icon>
-                        </span>
-                    
-                        <div style="margin: 0.2% 0% 2% 0%;" class="custom_user_profile_details">
+                </b-col>   
+                <b-col cols="2"></b-col>
+                <b-col cols="9">
+                    <b-row>
+                     
+                            <span style="font-size: 158%; margin-left: 2%;" >
+                                {{this.user.name}}
+                            </span>
+                            <span style="margin: 0% 10.0% 0% 5.0%;">
+                       
+                                <b-button v-if="this.$store.state.user.user_id===this.user.user_id" class="p-0 custom_b-button">Edit</b-button>
+                                <b-button v-else class="p-0 custom_b-button">Call</b-button>
+                            </span>
+                            <span>
+                                <b-icon icon="three-dots" scale="1.6" class="custom_more_icon"></b-icon>
+                            </span>
+                    </b-row>       
+                    <b-row>
+                        <b-col>
+                        <span class="custom_user_profile_details">
                             <span class="custom_user_profile" style="margin-right: 5%"><b>{{this.user.posts_count}}</b> posts</span>
                             <span><b>{{this.user.reactions_count}}</b> likes</span>
-                        </div>
-                        <div class="custom_user_profile" style="font-size: 100%;">
-                            {{this.user.role}}
-                        </div>
-                    <!-- </span> -->
+                        </span>   
+                        </b-col>                     
+                    </b-row>
+                    <b-row>
+                        <b-col>
+                            <span class="custom_user_profile" style="font-size: 100%;">
+                                {{this.user.role}}
+                            </span>
+                        </b-col>
+                    </b-row>    
+                   
+                </b-col>
+            </b-row>  
 
         </div>
-
-
-
-
-
-
-
         <div class="custom_post_line"></div> 
-   
+        <span v-if="posts.length>0">
+            <b-row v-for="indexRow in (Math.floor(posts.length/3)+1)" :key="indexRow"  class="custom_post_photo_row p-0">
 
+                <b-col v-for="indexCol in 3" :key="indexCol" class="p-0 custom_post_photo_column">
+                        <b-img v-if="posts[indexRow*indexCol]!==undefined" :src="`http://localhost:3000/uploads/posts/${posts[indexRow*indexCol].photo_url}`" class="p-0 m-0" style="width: 100%; height: 100%"  />
+                  
+                </b-col>
+            </b-row>
+        </span>
 
 
 
@@ -59,6 +73,8 @@
         data()  {
             return  {
                 user: null,
+                posts: [],
+                page: -1,
                 message: ''
             }
         },
@@ -75,22 +91,34 @@
                 } else  {
                     this.$refs.alertdialog.showDialog()
                 }
+            },
+            retrieveAllPosts: async function()  {
+                this.page++
+
+                const { status, body }=await this.getRequest(`${this.subUrl.post}${this.subUrl.user}?page=${this.page}&user_id=${this.$route.params.user_id}`)
+                this.message=body['message']
+                if(status===200)  {
+
+                    this.posts.push(...body['posts'])
+                } else if(!this.message)  {
+                    this.message='Failed to connect'
+                    this.$refs.alertdialog.showDialog()
+                } else  {
+                    this.$refs.alertdialog.showDialog()
+                }
+
+
+
             }
-
-
-
-
-
-
-
-
-
         },
         computed:    {
 
         }, 
         created()   {
             this.retrieveUser()
+            this.retrieveAllPosts()
+        },
+        mounted()   {
         }
 
 
@@ -100,18 +128,16 @@
 
 <style scoped>
     .custom_user_profile_photo  {
-        width: 150px;
-        height: 150px;
-        margin: 0% 0% -50% 0%;
-        padding: 0% 0% 0% 0%;
+        width: 160%;
+        height: 160%;
     }
-    .custom_user_profile_background {
+    /* .custom_user_profile_background {
         padding: 8% 15% 0% 15%;
         overflow-x: hidden;
-    }
+    } */
     .custom_b-button    {
-        width: 150%;
-        height: 0.0%;
+        width: 250%;
+        height: 70.0%;
         color: black;
         font-size: 77.5%;
         font-weight: bold;
@@ -121,7 +147,7 @@
         
     }    
     .custom_more_icon   {
-        margin: 0.5% 0% 0% 0%;
+        /* margin: 0.5% 0% 0% 0%; */
     }
     .custom_user_profile_details {
         font-size: 96.5%;
@@ -130,15 +156,96 @@
         width: 100%;
         height: 1px;
         background: lightgrey;
-        margin: 5% 0% 0% 0%;
+        margin: 5% 0% 5% 0%;
     }
     .custom_user_profile    {
-        margin-left: 25.5%;
+        /* margin-left: 25.5%; */
+    }
+    .custom_post_photo  {
+        width: 85%;
+        height: 135%;
+
     }
 
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 480px) {
+    .custom_post_photo_row   {
+        margin: 1.5% 0% 0% 0%;
+        width: 100%;
+        height: 120px;
+    }
+    .custom_user_profile_background {
+        padding: 8% 0% 10% 0%;
+        overflow-x: hidden;
+    }
+    .custom_post_photo_column   {
+        margin: 0% 0.7% 0% 0.7%;
+    }
+}
 
-   
+    /* Extra Small Devices, Phones */ 
+@media only screen and (max-width: 768px) and (min-width : 480px) {
+    .custom_post_photo_row   {
+        margin: 1.5% 0% 0% 0%;
+        width: 100%;
+        height: 200px;
+    }
+    .custom_user_profile_background {
+        padding: 8% 0% 10% 0%;
+        overflow-x: hidden;
+    }
+    .custom_post_photo_column   {
+        margin: 0% 0.7% 0% 0.7%;
+    }
+}
 
+/* Small Devices, Tablets */
+@media only screen and (max-width: 992px) and (min-width : 768px) {
+    .custom_post_photo_row   {
+        margin: 1.5% 0% 0% 0%;
+        width: 100%;
+        height: 200px;
+    }
+    .custom_user_profile_background {
+        padding: 8% 15% 10% 15%;
+        overflow-x: hidden;
+    }
+    .custom_post_photo_column   {
+        margin: 0% 0.7% 0% 0.7%;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 1200px) and (min-width : 992px) {
+    .custom_post_photo_row   {
+       margin: 2.5% 0% 0% 0%;
+        width: 100%;
+        height: 250px;
+    }
+    .custom_user_profile_background {
+        padding: 8% 15% 10% 15%;
+        overflow-x: hidden;
+    }
+    .custom_post_photo_column   {
+        margin: 0% 1.3% 0% 1.3%;
+    }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    .custom_post_photo_row   {
+        margin: 2.5% 0% 0% 0%;
+        width: 100%;
+        height: 250px;
+    }
+    .custom_user_profile_background {
+        padding: 8% 15% 10% 15%;
+        overflow-x: hidden;
+    }
+    .custom_post_photo_column   {
+        margin: 0% 1.3% 0% 1.3%;
+    }  
+}
 
 
 
