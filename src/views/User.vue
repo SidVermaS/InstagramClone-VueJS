@@ -6,18 +6,18 @@
                 <b-col cols="3" class="p-0 m-0">
                     <b-img :src="`${this.baseUrlUserPhoto}${this.user.photo_url}`" rounded="circle" class="custom_user_profile_photo"></b-img>
                 </b-col>   
-                <b-col cols="9">
+                <b-col cols="9" class="p-0 m-0">
                     <b-row>                     
-                            <span style="font-size: 158%; margin-left: 2.5%;" >
-                                {{this.user.name}}
-                            </span>
-                            <span style="margin: 0% 10.0% 0% 5.0%;">                       
-                                <b-button v-if="this.$store.state.user.user_id===this.user.user_id" class="p-0 custom_b-button">Edit</b-button>
-                                <b-button v-else class="p-0 custom_b-button">Call</b-button>
-                            </span>
-                            <span>
-                                <b-icon icon="three-dots" scale="1.6" class="custom_more_icon"></b-icon>
-                            </span>
+                        <span style="font-size: 158%; margin-left: 2.5%;" >
+                            {{this.user.name}}
+                        </span>
+                        <span style="margin: 0% 10.0% 0% 5.0%;">                       
+                            <b-button v-if="this.$store.state.user.user_id===this.user.user_id" class="p-0 custom_b-button custom_b-button_size">Edit</b-button>
+                            <b-button v-else class="p-0 custom_b-button custom_b-button_size">Call</b-button>
+                        </span>
+                        <span>
+                            <b-icon icon="three-dots" scale="1.6" class="custom_more_icon"></b-icon>
+                        </span>
                     </b-row>       
                     <b-row>
                         <b-col style="margin: 2.5% 0% 2.5% 0%">
@@ -38,11 +38,11 @@
                 </b-col>
             </b-row>  
             <b-row class="custom_user_profile_mobile">
-                <b-row>
-                    <b-col >
+                <b-row class="mx-4">
+                    <b-col cols="3">
                          <b-img :src="`${this.baseUrlUserPhoto}${this.user.photo_url}`" rounded="circle" class="custom_user_profile_photo"></b-img>
                     </b-col>
-                    <b-col>
+                    <b-col cols="7" class="ml-5">
                         <b-row>
                         <span style="font-size: 28px; margin: 0% 5% 0% 0.0%;" >
                             {{this.user.name}}
@@ -53,13 +53,13 @@
                         </b-row>
                         <b-row>
                             <span style="">                       
-                                <b-button v-if="this.$store.state.user.user_id===this.user.user_id" class="p-0 custom_b-button">Edit</b-button>
-                                <b-button v-else class="p-0 custom_b-button">Call</b-button>
+                                <b-button v-if="this.$store.state.user.user_id===this.user.user_id" class="p-0 custom_b-button custom_b-button_size">Edit</b-button>
+                                <b-button v-else class="p-0 custom_b-button custom_b-button_size">Call</b-button>
                             </span>
                         </b-row>
                     </b-col>
                 </b-row>               
-                <b-row>
+                <b-row class="mt-3 mx-4">
                     <b-col>
                         <span style="font-size: 100%;">
                             {{this.user.role}}
@@ -171,9 +171,7 @@
         padding: 8% 15% 0% 15%;
         overflow-x: hidden;
     } */
-    .custom_b-button    {
-        width: 250%;
-        height: 70.0%;
+    .custom_b-button    {      
         color: black;
         font-size: 77.5%;
         font-weight: bold;
@@ -183,7 +181,7 @@
         
     }    
     .custom_more_icon   {
-        /* margin: 0.5% 0% 0% 0%; */
+        margin: 0.5% 0% 0% 0%;
     }
     .custom_user_profile_details {
         font-size: 96.5%;
@@ -207,7 +205,7 @@
        display: none;
     }
     .custom_user_profile_mobile {
-        margin: 15% 0% 0% 4%;
+        margin: 15% 0% 4% 0%;
         display: block;
     }
     
@@ -218,6 +216,10 @@
     .custom_user_profile_info   {
         /* margin-left: 20%; */
     }
+    .custom_b-button_size   {
+        width: 250%;
+        height: 100.0%;
+    }
     .custom_post_line_margin    {
         margin: 2.5% 0% 2.5% 0%;
     }
@@ -225,6 +227,9 @@
         margin: 1.5% 0% 0% 0%;
         width: 100%;
         height: 120px;
+    }
+    .custom_more_icon   {
+        margin: 5% 0% 0% 0%;
     }
     .custom_user_profile_background {
         padding: 8% 0% 10% 0%;
@@ -252,6 +257,10 @@
     }
     .custom_user_profile_info   {
         /* margin-left: 20%; */
+    }
+     .custom_b-button_size   {
+        width: 250%;
+        height: 70.0%;
     }
       .custom_post_line_margin    {
         margin: 5% 0% 5% 0%;
@@ -287,6 +296,10 @@
     .custom_user_profile_info   {
         /* margin-left: 20%; */
     }
+     .custom_b-button_size   {
+        width: 250%;
+        height: 70.0%;
+    }
       .custom_post_line_margin    {
         margin: 5% 0% 5% 0%;
     }
@@ -321,6 +334,10 @@
     .custom_user_profile_info   {
         /* margin-left: 50%; */
     }
+     .custom_b-button_size   {
+        width: 250%;
+        height: 70.0%;
+    }
       .custom_post_line_margin    {
         margin: 5% 0% 5% 0%;
     }
@@ -354,6 +371,10 @@
     }
     .custom_user_profile_info   {
         /* margin-left: 20%; */
+    }
+     .custom_b-button_size   {
+        width: 250%;
+        height: 70.0%;
     }
       .custom_post_line_margin    {
         margin: 5% 0% 5% 0%;
