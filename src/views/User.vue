@@ -3,22 +3,21 @@
         <AlertDialog :message="this.message" ref="alertdialog"  />
         <div v-if="this.user!==null" style="text-align: left;">   
             <b-row class="custom_user_profile_desktop">
-                <b-col cols="3" class="p-0 m-0">
+                <b-col cols="3" order="1">
                     <b-img :src="`${this.baseUrlUserPhoto}${this.user.photo_url}`" rounded="circle" class="custom_user_profile_photo"></b-img>
-                </b-col>   
-                <b-col cols="9" class="p-0 m-0">
-                    <b-row>                     
-                        <span style="font-size: 158%; margin-left: 2.5%;" >
-                            {{this.user.name}}
-                        </span>
-                        <span style="margin: 0% 10.0% 0% 5.0%;">                       
-                            <b-button v-if="this.$store.state.user.user_id===this.user.user_id" class="p-0 custom_b-button custom_b-button_size">Edit</b-button>
-                            <b-button v-else class="p-0 custom_b-button custom_b-button_size">Call</b-button>
-                        </span>
-                        <span>
-                            <b-icon icon="three-dots" scale="1.6" class="custom_more_icon"></b-icon>
-                        </span>
-                    </b-row>       
+                </b-col>
+                <b-col cols="9" order="2"> 
+                    <b-row>    
+                        <b-col class="p-0 ml-3">              
+                            <span style="font-size: 158%;" class="mr-3">
+                                {{this.user.name}}
+                            </span>
+                            <b-button v-if="this.$store.state.user.user_id===this.user.user_id" class="px-2 py-1 m-0 custom_b-button ">Edit</b-button>
+                            <b-button v-else class="px-2 py-1 m-0 custom_b-button ">Call</b-button>
+                            <b-icon icon="three-dots" scale="1.6" class="ml-3 custom_more_icon"></b-icon>
+                        </b-col>
+                    </b-row> 
+
                     <b-row>
                         <b-col style="margin: 2.5% 0% 2.5% 0%">
                         <span class="custom_user_profile_details">
@@ -33,9 +32,8 @@
                                 {{this.user.role}}
                             </span>
                         </b-col>
-                    </b-row>    
-                   
-                </b-col>
+                    </b-row> 
+                </b-col>   
             </b-row>  
             <b-row class="custom_user_profile_mobile">
                 <b-row class="mx-4">
@@ -44,7 +42,7 @@
                     </b-col>
                     <b-col cols="7" class="ml-5">
                         <b-row>
-                        <span style="font-size: 28px; margin: 0% 5% 0% 0.0%;" >
+                        <span style="font-size: 28px;" >
                             {{this.user.name}}
                         </span>
                         <span>
@@ -178,7 +176,6 @@
         border: 1px solid #a9aaa1;
         border-radius: 5px;
         background: transparent;
-        
     }    
     .custom_more_icon   {
         margin: 0.5% 0% 0% 0%;
@@ -201,7 +198,6 @@
 /* Custom, iPhone Retina */ 
 @media only screen and (max-width : 480px) {
     .custom_user_profile_desktop    {
-       margin: 6% 0% 0% 4%;
        display: none;
     }
     .custom_user_profile_mobile {
@@ -229,7 +225,7 @@
         height: 120px;
     }
     .custom_more_icon   {
-        margin: 5% 0% 0% 0%;
+        margin: 50% 0% 0% 100%;
     }
     .custom_user_profile_background {
         padding: 8% 0% 10% 0%;
@@ -244,7 +240,6 @@
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width: 768px) and (min-width : 480px) {
     .custom_user_profile_desktop    {
-       margin: 5% 0% 0% 4%;
        display: block;
     }
      .custom_user_profile_mobile {
@@ -259,7 +254,7 @@
         /* margin-left: 20%; */
     }
      .custom_b-button_size   {
-        width: 250%;
+        width: 70%;
         height: 70.0%;
     }
       .custom_post_line_margin    {
@@ -282,7 +277,6 @@
 /* Small Devices, Tablets */
 @media only screen and (max-width: 992px) and (min-width : 768px) {
     .custom_user_profile_desktop    {
-       margin: 5% 0% 0% 4%;
        display: block;
     }
       .custom_user_profile_mobile {
@@ -320,7 +314,6 @@
 /* Medium Devices, Desktops */
 @media only screen and (max-width: 1200px) and (min-width : 992px) {
     .custom_user_profile_desktop    {
-       margin: 0% 0% 0% 4%;
        display: block;
     }
       .custom_user_profile_mobile {
@@ -335,7 +328,7 @@
         /* margin-left: 50%; */
     }
      .custom_b-button_size   {
-        width: 250%;
+        width: 10%;
         height: 70.0%;
     }
       .custom_post_line_margin    {
@@ -358,7 +351,6 @@
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
     .custom_user_profile_desktop    {
-       margin: 0% 0% 0% 4%;
        display: block;
     }
       .custom_user_profile_mobile {
@@ -373,8 +365,8 @@
         /* margin-left: 20%; */
     }
      .custom_b-button_size   {
-        width: 250%;
-        height: 70.0%;
+        width: 10%;
+        height: 7.0%;
     }
       .custom_post_line_margin    {
         margin: 5% 0% 5% 0%;
