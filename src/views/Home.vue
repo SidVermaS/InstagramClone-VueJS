@@ -1,20 +1,18 @@
 <template>
-  <div class="custom_background">
+  <div class="custom_background m-0 p-0">
       <AlertDialog v-bind:message="message" ref="alertdialog" />
-      <b-container fluid=true>
-        <b-row>
-          <b-col lg="2" sm="0">
-          </b-col>
-          <b-col lg="7" sm="12">
+      <!-- <b-container fluid=true> -->
+        <b-row class="custom_home">
+          <b-col class="custom_all_posts">
               <span v-for="(post, index) in posts" :key="post.post_id">
-                <Post :post="post" :index="index" v-on:give-reaction="giveReaction" v-on:navigate-to-user="navigateToUser" v-on:show-dialog="showDialog" class="custom_post"  />
+                <Post :post="post" :index="index" v-on:give-reaction="giveReaction" v-on:navigate-to-user="navigateToUser" v-on:navigate-to-post="navigateToFullPost" v-on:show-dialog="showDialog" class="custom_post" />
               </span>  
           </b-col> 
-          <b-col lg="1" sm="0">
+          <b-col class="custom_suggestions">
               <Suggestions class="position-fixed w-100 h-100 custom_suggestions" />
           </b-col>
         </b-row>
-      </b-container>
+      <!-- </b-container> -->
   </div>
 </template>
 
@@ -80,7 +78,10 @@
 
       },
       navigateToUser: async function(user_id)   {
-            this.$router.push({ name: 'User', params: { user_id: user_id }})
+        this.$router.push({ name: 'User', params: { user_id: user_id }})
+      },
+      navigateToFullPost: async function(post_id) {
+        this.$router.push({ name: 'FullPost', params: { post_id: post_id } })
       },
       async showDialog(sentMessage)  {
         this.message=sentMessage
@@ -99,12 +100,107 @@
 
 
 <style scoped>
-  .custom_post  {
-    margin-top: 10%;
-  }    
-  .custom_suggestions {
-  }
 
+ 
+     /* Custom, iPhone Retina */ 
+@media only screen and (max-width : 480px) {
+  .custom_post  {
+    height: 60vh;
+    margin-top: 20%;
+  } 
+  .custom_home  {
+    margin:0;
+     padding: 0%;
+  } 
+  .custom_all_posts {
+    
+  }
+  .custom_suggestions {
+    display: none;
+  }
+}
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width: 700px) and (min-width : 480px) {
+  .custom_post  {
+    height:60vh;
+    margin-top: 52.5%;
+  } 
+  .custom_home  {
+     margin: 0% 0% 0% 0%;
+     padding: 0%;
+  } 
+  .custom_all_posts {
+    
+  }
+  .custom_suggestions {
+    display: none;
+  }
+}
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width: 768px) and (min-width : 700px) {
+  .custom_post  {
+    height: 80vh;
+    margin-top: 47.5%;
+  } 
+  .custom_home  {
+     margin: 0% 5% 0% 5%;
+  } 
+  .custom_all_posts {
+    
+  }
+  .custom_suggestions {
+    display: none;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width: 992px) and (min-width : 768px) {
+  .custom_post  {
+    height: 80vh;
+    margin-top: 47.5%;
+  } 
+  .custom_home  {
+     margin: 0% 10% 0% 10%;
+  } 
+  .custom_all_posts {
+    
+  }
+  .custom_suggestions {
+    display: none;
+  }
+}
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 1200px) and (min-width : 992px) {
+  .custom_post  {
+    height: 80vh;
+    margin-top: 27.5%;
+  } 
+  .custom_home  {
+    margin: 0% -25% 0% 2%;
+  } 
+  .custom_all_posts {
+    
+  }
+  .custom_suggestions {
+    display: block;
+  }
+}
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  .custom_post  {
+    height: 80vh;
+    margin-top: 27.5%;
+  } 
+  .custom_home  {
+    margin: 0% -10% 0 15%;
+  } 
+  .custom_all_posts {
+    
+  }
+  .custom_suggestions {
+    display: block;
+  }
+}
 
 
 

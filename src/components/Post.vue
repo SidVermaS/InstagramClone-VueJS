@@ -16,13 +16,13 @@
             <div class="custom_actions">
                 <b-icon v-if="post.status==='like'" icon="heart-fill" variant="danger" scale="1.6" v-on:click="giveReaction"></b-icon>
                 <b-icon v-else icon="heart" scale="1.6" v-on:click="giveReaction"></b-icon>
-                <b-icon icon="chat" scale="1.6" style="margin: 0% 0% 0.35% 4%;"></b-icon>
+                <b-icon v-on:click="navigateToFullPost" icon="chat" scale="1.6" style="margin: 0% 0% 0.35% 4%;"></b-icon>
             </div>
 
             <p class="custom_caption_user_name custom_caption_post_reaction">{{post.reactions_count}} reacts</p>
             <span class="custom_caption_user_name">{{post.name}}</span>
             <span class="custom_caption_text">{{post.caption}}</span> 
-            <p class="custom_caption_text custom_faded_color">View all {{post.comments_count}} comments</p> 
+            <p v-on:click="navigateToFullPost" class="custom_caption_text custom_faded_color">View all {{post.comments_count}} comments</p> 
             <div v-for="(comment, index) in post.comments" :key="index">
                 <span>
                     <span class="custom_caption_user_name">{{comment.name}}</span>
@@ -97,6 +97,9 @@
            },
             navigateToUser: async function()    {
                 this.$emit('navigate-to-user', this.post.user_id)
+            },
+            navigateToFullPost: async function()    {
+               this.$emit('navigate-to-post', this.post.post_id) 
             }
         },
         computed:   {

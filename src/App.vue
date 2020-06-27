@@ -43,8 +43,6 @@
 
 .custom_background  {
   background: #f5f5f5;
-  padding: 0% 25% 0% 0%;
-  margin: 0%;
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -108,6 +106,10 @@
 .custom_font_size {
   font-weight: bold;
 }
-
+.custom_post_line   {
+    width: 100%;
+    height: 1px;
+    background: lightgrey;       
+}
 
 </style>

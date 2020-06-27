@@ -2,39 +2,43 @@
     <div class="custom_background custom_user_profile_background">
         <AlertDialog :message="this.message" ref="alertdialog"  />
         <div v-if="this.user!==null" style="text-align: left;">   
-            <b-row class="custom_user_profile_desktop">
-                <b-col cols="3" order="1">
-                    <b-img :src="`${this.baseUrlUserPhoto}${this.user.photo_url}`" rounded="circle" class="custom_user_profile_photo"></b-img>
-                </b-col>
-                <b-col cols="9" order="2"> 
-                    <b-row>    
-                        <b-col class="p-0 ml-3">              
-                            <span style="font-size: 158%;" class="mr-3">
-                                {{this.user.name}}
-                            </span>
-                            <b-button v-if="this.$store.state.user.user_id===this.user.user_id" class="px-2 py-1 m-0 custom_b-button ">Edit</b-button>
-                            <b-button v-else class="px-2 py-1 m-0 custom_b-button ">Call</b-button>
-                            <b-icon icon="three-dots" scale="1.6" class="ml-3 custom_more_icon"></b-icon>
+            <b-container>
+                <b-row class="custom_user_profile_desktop">
+                    <b-row align-h="start">
+                        <b-col cols="4">
+                            <b-img :src="`${this.baseUrlUserPhoto}${this.user.photo_url}`" rounded="circle" class="custom_user_profile_photo"></b-img>
                         </b-col>
-                    </b-row> 
+                        <b-col cols="8"> 
+                            <b-row>    
+                                <b-col class="p-0 ml-3">              
+                                    <span style="font-size: 158%;" class="mr-3">
+                                        {{this.user.name}}
+                                    </span>
+                                    <b-button v-if="this.$store.state.user.user_id===this.user.user_id" class="px-2 py-1 m-0 custom_b-button ">Edit</b-button>
+                                    <b-button v-else class="px-2 py-1 m-0 custom_b-button ">Call</b-button>
+                                    <b-icon icon="three-dots" scale="1.6" class="ml-3 custom_more_icon"></b-icon>
+                                </b-col>
+                            </b-row> 
 
-                    <b-row>
-                        <b-col style="margin: 2.5% 0% 2.5% 0%">
-                        <span class="custom_user_profile_details">
-                            <span style="margin-right: 5%"><b>{{this.user.posts_count}}</b> posts</span>
-                            <span><b>{{this.user.reactions_count}}</b> likes</span>
-                        </span>   
-                        </b-col>                     
+                            <b-row>
+                                <b-col style="margin: 2.5% 0% 2.5% 0%">
+                                <span class="custom_user_profile_details">
+                                    <span style="margin-right: 5%"><b>{{this.user.posts_count}}</b> posts</span>
+                                    <span><b>{{this.user.reactions_count}}</b> likes</span>
+                                </span>   
+                                </b-col>                     
+                            </b-row>
+                            <b-row>
+                                <b-col>
+                                    <span style="font-size: 100%;">
+                                        {{this.user.role}}
+                                    </span>
+                                </b-col>
+                            </b-row> 
+                        </b-col>   
                     </b-row>
-                    <b-row>
-                        <b-col>
-                            <span style="font-size: 100%;">
-                                {{this.user.role}}
-                            </span>
-                        </b-col>
-                    </b-row> 
-                </b-col>   
-            </b-row>  
+                </b-row>  
+            </b-container>
             <b-row class="custom_user_profile_mobile">
                 <b-row class="mx-4">
                     <b-col cols="3">
@@ -78,6 +82,7 @@
                     </b-col>                   
                 </b-row>
             </b-row>
+
         </div>
         <div class="custom_post_line custom_post_line_margin"></div> 
         <span v-if="posts.length>0">
@@ -183,11 +188,7 @@
     .custom_user_profile_details {
         font-size: 96.5%;
     }
-    .custom_post_line   {
-        width: 100%;
-        height: 1px;
-        background: lightgrey;       
-    }
+
     
     .custom_post_photo  {
         width: 85%;
@@ -240,7 +241,8 @@
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width: 768px) and (min-width : 480px) {
     .custom_user_profile_desktop    {
-       display: block;
+        margin: 7.5% 0% 0% 5%; 
+        display: block;
     }
      .custom_user_profile_mobile {
 
@@ -277,6 +279,7 @@
 /* Small Devices, Tablets */
 @media only screen and (max-width: 992px) and (min-width : 768px) {
     .custom_user_profile_desktop    {
+       margin: 4% 0% 0% 0%; 
        display: block;
     }
       .custom_user_profile_mobile {
@@ -314,6 +317,7 @@
 /* Medium Devices, Desktops */
 @media only screen and (max-width: 1200px) and (min-width : 992px) {
     .custom_user_profile_desktop    {
+         /* margin: 10% 0% 0% 0%;  */
        display: block;
     }
       .custom_user_profile_mobile {

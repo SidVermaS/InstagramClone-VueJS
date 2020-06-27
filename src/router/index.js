@@ -5,6 +5,7 @@ import store from '../store'
 import LocalStorageManager from '../mixins/local_storage_manager'
 import Home from '../views/Home.vue'
 import User from '../views/User.vue'
+import FullPost from '../views/FullPost.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
@@ -20,6 +21,11 @@ Vue.use(VueRouter)
     path: '/user/:user_id',
     name: 'User',
     component: User
+  },
+  {
+    path: '/post/:post_id',
+    name: 'FullPost',
+    component: FullPost
   },
   {
     path: '/login',
