@@ -83,7 +83,7 @@
   margin-left: 1%;
 }
 .custom_caption_text  {
-  font-size: 90%;
+  font-size: 85%;
 }
 .custom_hand_thumb_down {
   margin: 0% 4.0% 0% 4.0%;
@@ -114,5 +114,8 @@
     height: 1px;
     background: lightgrey;       
 }
-
+.custom_full_post_user_name {
+  font-weight: bold;
+  font-size: 85%;
+}
 </style>

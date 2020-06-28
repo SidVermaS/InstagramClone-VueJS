@@ -23,7 +23,7 @@ Vue.use(VueRouter)
     component: User
   },
   {
-    path: '/post/:post_id',
+    path: '/post/:post_id/',
     name: 'FullPost',
     component: FullPost
   },

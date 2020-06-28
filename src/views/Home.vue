@@ -81,7 +81,7 @@
         this.$router.push({ name: 'User', params: { user_id: user_id }})
       },
       navigateToFullPost: async function(post_id) {
-        this.$router.push({ name: 'FullPost', params: { post_id: post_id } })
+        this.$router.push({ name: 'FullPost', params: { post_id: post_id, user_id: user_id } })
       },
       async showDialog(sentMessage)  {
         this.message=sentMessage
