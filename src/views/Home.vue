@@ -101,36 +101,120 @@
 
 <style scoped>
 
- 
-     /* Custom, iPhone Retina */ 
-@media only screen and (max-width : 480px) {
+ @media only screen and (max-width: 265px) {
   .custom_post  {
-    height: 60vh;
-    margin-top: 20%;
+    height: 35vh;
+    margin: 92.5% 0% 92.5% 0%;
+     /* padding: 0% -1% 0% -1%; */
   } 
   .custom_home  {
-    margin:0;
-     padding: 0%;
+    padding:0;
+    
   } 
   .custom_all_posts {
-    
+    margin: -33.5% 0% 10% 0%;
   }
   .custom_suggestions {
     display: none;
   }
 }
-/* Extra Small Devices, Phones */ 
-@media only screen and (max-width: 700px) and (min-width : 480px) {
+@media only screen and (max-width: 300px) and (min-width : 265px) {
+  .custom_post  {
+    height: 35vh;
+    margin: 80.5% 0% 80.5% 0%;
+     /* padding: 0% -1% 0% -1%; */
+  } 
+  .custom_home  {
+    padding:0;
+    
+  } 
+  .custom_all_posts {
+    margin: -33.5% 0% 10% 0%;
+  }
+  .custom_suggestions {
+    display: none;
+  }
+}
+@media only screen and (max-width: 350px) and (min-width : 300px) {
+  .custom_post  {
+    height: 45vh;
+    margin: 72.5% 0% 72.5% 0%;
+     /* padding: 0% -1% 0% -1%; */
+  } 
+  .custom_home  {
+    padding:0;
+    
+  } 
+  .custom_all_posts {
+    margin: -33.5% 0% 10% 0%;
+  }
+  .custom_suggestions {
+    display: none;
+  }
+}
+@media only screen and (max-width: 445px) and (min-width : 350px) {
+  .custom_post  {
+    height: 45vh;
+    margin: 60.5% 0% 60.5% 0%;
+     /* padding: 0% -1% 0% -1%; */
+  } 
+  .custom_home  {
+    padding:0;
+    
+  } 
+  .custom_all_posts {
+    margin: -35.5% 0% 10% 0%;
+  }
+  .custom_suggestions {
+    display: none;
+  }
+}
+     /* Custom, iPhone Retina */ 
+@media only screen and (max-width: 480px) and (min-width : 445px) {
+  .custom_post  {
+    height: 45vh;
+    margin: 52.5% 0% 52.5% 0%;
+     /* padding: 0% -1% 0% -1%; */
+  } 
+  .custom_home  {
+    padding:0;
+    
+  } 
+  .custom_all_posts {
+    margin: -33.5% 0% 10% 0%;
+  }
+  .custom_suggestions {
+    display: none;
+  }
+}
+@media only screen and (max-width: 630px) and (min-width : 480px) {
   .custom_post  {
     height:60vh;
-    margin-top: 52.5%;
+    margin: 50.5% 0% 50.5% 0%;
   } 
   .custom_home  {
      margin: 0% 0% 0% 0%;
      padding: 0%;
   } 
   .custom_all_posts {
-    
+    margin-top: -30%;
+  }
+  .custom_suggestions {
+    display: none;
+  }
+}
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width: 700px) and (min-width : 630px) {
+  .custom_post  {
+    height:60vh;
+    margin: 40.5% 0% 40.5% 0%;
+  } 
+  .custom_home  {
+     margin: 0% 0% 0% 0%;
+     padding: 0%;
+  } 
+  .custom_all_posts {
+    margin-top: -25%;
   }
   .custom_suggestions {
     display: none;
@@ -139,14 +223,14 @@
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width: 768px) and (min-width : 700px) {
   .custom_post  {
-    height: 80vh;
-    margin-top: 47.5%;
+    height: 70vh;
+    margin: 40.5% 0% 40.5% 0%;
   } 
   .custom_home  {
      margin: 0% 5% 0% 5%;
   } 
   .custom_all_posts {
-    
+    margin-top: -35%;
   }
   .custom_suggestions {
     display: none;
@@ -156,14 +240,14 @@
 /* Small Devices, Tablets */
 @media only screen and (max-width: 992px) and (min-width : 768px) {
   .custom_post  {
-    height: 80vh;
-    margin-top: 47.5%;
+    height: 70vh;
+     margin: 47.5% 0% 47.5% 0%;
   } 
   .custom_home  {
      margin: 0% 10% 0% 10%;
   } 
   .custom_all_posts {
-    
+    margin-top: -35%;
   }
   .custom_suggestions {
     display: none;
@@ -172,14 +256,14 @@
 /* Medium Devices, Desktops */
 @media only screen and (max-width: 1200px) and (min-width : 992px) {
   .custom_post  {
-    height: 80vh;
-    margin-top: 27.5%;
+    height: 70vh;
+     margin: 47.5% 0% 47.5% 0%;
   } 
   .custom_home  {
     margin: 0% -25% 0% 2%;
   } 
   .custom_all_posts {
-    
+    margin-top: -15%;
   }
   .custom_suggestions {
     display: block;
@@ -188,14 +272,14 @@
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
   .custom_post  {
-    height: 80vh;
-    margin-top: 27.5%;
+    height: 70vh;
+    margin: 47.5% 0% 47.5% 0%;
   } 
   .custom_home  {
     margin: 0% -10% 0 15%;
   } 
   .custom_all_posts {
-    
+    margin-top: -15%;
   }
   .custom_suggestions {
     display: block;

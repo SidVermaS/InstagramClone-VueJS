@@ -46,7 +46,10 @@
   width: 100%;
   height: 100%;
   min-height: 100vh;
+  padding: 0%;
+  margin: 0%;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 .custom_user_background {
   background: #fff;
