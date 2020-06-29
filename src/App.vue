@@ -1,7 +1,18 @@
 <template>
   <div id="app">
-     <b-navbar type="light" variant="info" fixed="top">
-      <b-navbar-brand tag="h1" class="mb-0">BootstrapVue</b-navbar-brand>
+     <b-navbar type="light" fixed="top" style="background: white;">
+        <router-link to="/">
+          <b-navbar-brand>
+            <b-img :src="require('./assets/images/navbar/instagram.png')" alt="Instagram" />            
+          </b-navbar-brand>
+        </router-link>
+        <b-navbar-nav>
+          <router-link to="/">
+            <b-nav-item>
+              <b-img svg-inline :src="require('./assets/images/navbar/home.svg')" alt="home"  />
+            </b-nav-item>
+          </router-link>
+        </b-navbar-nav>  
     </b-navbar>
     <router-view/>
   </div>
