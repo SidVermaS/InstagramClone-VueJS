@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-     <b-navbar type="light" fixed="top" style="background: white;">
+     <b-navbar type="light" fixed="top" class="border" style="background: white; ">
         <router-link to="/">
           <b-navbar-brand>
             <b-img :src="require('./assets/images/navbar/instagram.png')" alt="Instagram" />            
