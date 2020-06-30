@@ -104,6 +104,7 @@
 
 <script>
     import Vuex from 'vuex'
+    import { mapActions } from 'vuex'
     import Connect from '../mixins/connect'
     import AlertDialog from '../components/AlertDialog'
     export default {
@@ -151,15 +152,22 @@
 
 
 
-            }
+            },     
+            ...mapActions([
+                "setCurrentPage"
+            ])        
         },
         computed:    {
 
         }, 
         created()   {
+            if(this.$store.state.user.user_id===this.$route.params.user_id) {
+                this.setCurrentPage('user_active')
+            }   else    {
+                this.setCurrentPage(null)
+            }
             this.retrieveUser()
-            this.retrieveAllPosts()
-            this.setCurrentPage('current_page',null)
+            this.retrieveAllPosts()            
         },
         mounted()   {
         }

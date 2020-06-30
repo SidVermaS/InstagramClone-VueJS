@@ -18,6 +18,7 @@
 
 <script>
   import Vuex from 'vuex'
+  import { mapActions } from 'vuex'
   import Connect from '../mixins/connect'
   import Post from '../components/Post'
   import Suggestions from '../components/Suggestions'
@@ -86,11 +87,15 @@
       async showDialog(sentMessage)  {
         this.message=sentMessage
         this.$refs.alertdialog.showDialog()
-      }
-      
+      },
+      ...mapActions([
+        "setCurrentPage"
+      ])
     },
     created()  {
+      this.setCurrentPage('home_active')
       this.retrieveAllPosts()
+      
     }
   }
   // #ED4956

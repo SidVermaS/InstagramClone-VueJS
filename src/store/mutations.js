@@ -4,6 +4,7 @@ export default  {
         state['user']=payload
     },
     selectCurrentPage: (state, payload)=>   {
+        console.log('scp: ',payload)
         state['current_page']=payload
     }
 }

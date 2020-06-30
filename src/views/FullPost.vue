@@ -162,7 +162,7 @@
         created()   {
             this.retrievePost()
             this.retrieveAllComments()
-            this.setCurrentPage('current_page',null)
+            this.setCurrentPage(null)
         }
 
 

@@ -6,6 +6,8 @@ import LocalStorageManager from '../mixins/local_storage_manager'
 import Home from '../views/Home.vue'
 import User from '../views/User.vue'
 import FullPost from '../views/FullPost.vue'
+import Explore from '../views/Explore.vue'
+import Direct from '../views/Direct.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
@@ -16,6 +18,16 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/explore',
+    name: 'Explore',
+    component: Explore
+  },
+  {
+    path: '/direct',
+    name: 'Direct',
+    component: Direct,
   },
   {
     path: '/user/:user_id',

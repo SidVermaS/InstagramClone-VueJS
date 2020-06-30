@@ -10,41 +10,71 @@
     
             <b-nav-item>
               <router-link to="/">
-                <HomeIcon />
+                <HomeActiveIcon v-if="getCurrentPage==='home_active'"  />
+                <HomeIcon v-else />
               </router-link>
             </b-nav-item>  
              <b-nav-item>
-              <router-link to="/">
-                <b-img :src="require('./assets/images/navbar/direct.svg')" alt="message" />
+              <router-link to="/direct">
+                <DirectActiveIcon v-if="getCurrentPage==='direct_active'"  />
+                <DirectIcon v-else  />
               </router-link>
             </b-nav-item>
             <b-nav-item>
-              <router-link to="/">
-                <b-img :src="require('./assets/images/navbar/explore.svg')" alt="explore" />
+              <router-link to="/explore">
+                <ExploreActiveIcon v-if="getCurrentPage==='explore_active'"  />
+                <ExploreIcon v-else />
               </router-link>
             </b-nav-item>
-         
+            <b-nav-item>
+              <router-link :to="`/user/${getUser.user_id}`">
+                <b-avatar :src="`${this.baseUrlUserPhoto}${getUser.photo_url}`" size="1.5em" />
+              </router-link>
+            </b-nav-item>
         </b-navbar-nav>  
     </b-navbar>
     <router-view/>
   </div>
 </template>
 <script>
+import Vuex from 'vuex'
+import { mapGetters, mapActions } from 'vuex' 
+
+import Connect from './mixins/connect'
+
 import HomeIcon from './assets/images/navbar/home.svg'
+import HomeActiveIcon from './assets/images/navbar/home_active.svg'
+import DirectIcon from './assets/images/navbar/direct.svg'
+import DirectActiveIcon from './assets/images/navbar/direct_active.svg'
+import ExploreIcon from './assets/images/navbar/explore.svg'
+import ExploreActiveIcon from './assets/images/navbar/explore_active.svg'
 export default {
   name: 'App',
+  mixins: [
+    Connect
+  ],
   components: {
-    HomeIcon
+    HomeIcon,
+    HomeActiveIcon,
+    DirectIcon,
+    DirectActiveIcon,
+    ExploreIcon,
+    ExploreActiveIcon
   },
   data()  {
     return  {
-       mySVG: require('./assets/images/navbar/home.svg')
     }
   },
   methods:  {
-    changeCurrentPage: async function() {
-      
-    }
+    ...mapActions([
+      "setCurrentPage"
+    ])
+  },
+  computed: {
+    ...mapGetters([
+      "getCurrentPage",
+      "getUser"
+    ])
   }
 }
 </script>
