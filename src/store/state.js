@@ -2,7 +2,8 @@
 
 
 export default  {
-    user: null
+    user: null,
+    current_page: null
 
 
 

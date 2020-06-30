@@ -6,18 +6,48 @@
             <b-img :src="require('./assets/images/navbar/instagram.png')" alt="Instagram" />            
           </b-navbar-brand>
         </router-link>
-        <b-navbar-nav>
-          <router-link to="/">
+        <b-navbar-nav class="ml-auto">
+    
             <b-nav-item>
-              <b-img svg-inline :src="require('./assets/images/navbar/home.svg')" alt="home"  />
+              <router-link to="/">
+                <HomeIcon />
+              </router-link>
+            </b-nav-item>  
+             <b-nav-item>
+              <router-link to="/">
+                <b-img :src="require('./assets/images/navbar/direct.svg')" alt="message" />
+              </router-link>
             </b-nav-item>
-          </router-link>
+            <b-nav-item>
+              <router-link to="/">
+                <b-img :src="require('./assets/images/navbar/explore.svg')" alt="explore" />
+              </router-link>
+            </b-nav-item>
+         
         </b-navbar-nav>  
     </b-navbar>
     <router-view/>
   </div>
 </template>
-
+<script>
+import HomeIcon from './assets/images/navbar/home.svg'
+export default {
+  name: 'App',
+  components: {
+    HomeIcon
+  },
+  data()  {
+    return  {
+       mySVG: require('./assets/images/navbar/home.svg')
+    }
+  },
+  methods:  {
+    changeCurrentPage: async function() {
+      
+    }
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

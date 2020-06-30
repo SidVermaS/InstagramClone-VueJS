@@ -159,6 +159,7 @@
         created()   {
             this.retrieveUser()
             this.retrieveAllPosts()
+            this.setCurrentPage('current_page',null)
         },
         mounted()   {
         }
