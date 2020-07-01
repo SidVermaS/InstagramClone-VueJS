@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-     <b-navbar type="light" fixed="top" class="border" style="background: white; ">
+     <b-navbar type="light" fixed="top" sticky class="border" style="background: white; ">
         <router-link to="/">
           <b-navbar-brand>
             <b-img :src="require('./assets/images/navbar/instagram.png')" alt="Instagram" />            
@@ -117,7 +117,7 @@ export default {
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  padding: 0%;
+  padding: 0% 0% 0% 0%;
   margin: 0%;
   overflow-x: hidden;
   overflow-y: hidden;

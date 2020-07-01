@@ -83,6 +83,7 @@
 
 <script>
     import Vuex from 'vuex'
+    import { mapActions } from 'vuex'
     import Connect from '../mixins/connect'
     import AlertDialog from '../components/AlertDialog'
     import Comments from '../components/Comments'
@@ -158,11 +159,15 @@
                 }  
 
             },
+            ...mapActions([
+                'setCurrentPage'
+            ])
       },
-        created()   {
+        mounted()   {
+            this.setCurrentPage(null)
             this.retrievePost()
             this.retrieveAllComments()
-            this.setCurrentPage(null)
+            
         }
 
 

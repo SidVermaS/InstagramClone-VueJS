@@ -1,5 +1,5 @@
 <template>
-    <b-card no-body class="p-0">
+    <b-card no-body class="p-0 m-0">
         <div class="custom_user_background">
             <span v-on:click="navigateToUser">
             <b-img :src="`${this.baseUrlUserPhoto}${post.user_photo_url}`" rounded="circle" class="custom_user_photo"></b-img>
@@ -22,7 +22,7 @@
             <p class="custom_caption_user_name custom_caption_post_reaction">{{post.reactions_count}} reacts</p>
             <span class="custom_caption_user_name">{{post.name}}</span>
             <span class="custom_caption_text">{{post.caption}}</span> 
-            <p v-on:click="navigateToFullPost" class="custom_caption_text custom_faded_color">View all {{post.comments_count}} comments</p> 
+            <p v-if="post.comments_count" v-on:click="navigateToFullPost" class="custom_caption_text custom_faded_color">View all {{post.comments_count}} comments</p> 
             <div v-for="(comment, index) in post.comments" :key="index">
                 <span>
                     <span class="custom_caption_user_name">{{comment.name}}</span>

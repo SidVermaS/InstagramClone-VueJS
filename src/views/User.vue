@@ -89,7 +89,7 @@
             <b-row v-for="indexRow in (Math.floor(posts.length/3)+1)" :key="indexRow"  class="custom_post_photo_row p-0">
 
                 <b-col v-for="indexCol in 3" :key="indexCol" class="p-0 custom_post_photo_column">
-                        <b-img v-if="posts[indexRow*indexCol]!==undefined" :src="`http://localhost:3000/uploads/posts/${posts[indexRow*indexCol].photo_url}`" class="p-0 m-0" style="width: 100%; height: 100%"  />
+                        <b-img v-if="posts[indexRow*indexCol]!==undefined" :src="`${baseUrlPostPhoto}${posts[indexRow*indexCol].photo_url}`" class="p-0 m-0" style="width: 100%; height: 100%"  />
                   
                 </b-col>
             </b-row>
@@ -238,7 +238,7 @@
         margin: 50% 0% 0% 100%;
     }
     .custom_user_profile_background {
-        padding: 8% 0% 10% 0%;
+        padding: 2% 0% 10% 0%;
         overflow-x: hidden;
     }
     .custom_post_photo_column   {
@@ -277,7 +277,7 @@
         height: 200px;
     }
     .custom_user_profile_background {
-        padding: 8% 0% 10% 0%;
+        padding: 2% 0% 10% 0%;
         overflow-x: hidden;
     }
     .custom_post_photo_column   {
@@ -315,7 +315,7 @@
         height: 200px;
     }
     .custom_user_profile_background {
-        padding: 8% 15% 10% 15%;
+        padding: 2% 15% 10% 15%;
         overflow-x: hidden;
     }
     .custom_post_photo_column   {
@@ -353,7 +353,7 @@
         height: 250px;
     }
     .custom_user_profile_background {
-        padding: 8% 15% 10% 15%;
+        padding: 2% 15% 10% 15%;
         overflow-x: hidden;
     }
     .custom_post_photo_column   {
@@ -390,7 +390,7 @@
         height: 250px;
     }
     .custom_user_profile_background {
-        padding: 8% 15% 10% 15%;
+        padding: 2% 15% 10% 15%;
         overflow-x: hidden;
     }
     .custom_post_photo_column   {

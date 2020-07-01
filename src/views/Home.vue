@@ -4,8 +4,8 @@
       <!-- <b-container fluid=true> -->
         <b-row class="custom_home">
           <b-col class="custom_all_posts">
-              <span v-for="(post, index) in posts" :key="post.post_id">
-                <Post :post="post" :index="index" v-on:give-reaction="giveReaction" v-on:navigate-to-user="navigateToUser" v-on:navigate-to-post="navigateToFullPost" v-on:show-dialog="showDialog" class="custom_post" />
+              <span v-for="(post, index) in posts" :key="post.post_id" class="custom_post">
+                <Post :post="post" :index="index" v-on:give-reaction="giveReaction" v-on:navigate-to-user="navigateToUser" v-on:navigate-to-post="navigateToFullPost" v-on:show-dialog="showDialog" />
               </span>  
           </b-col> 
           <b-col class="custom_suggestions">
@@ -117,7 +117,7 @@
     
   } 
   .custom_all_posts {
-    margin: -33.5% 0% 10% 0%;
+    margin: 0% 0% 10% 0%;
   }
   .custom_suggestions {
     display: none;
@@ -134,7 +134,7 @@
     
   } 
   .custom_all_posts {
-    margin: -33.5% 0% 10% 0%;
+    margin: 0% 0% 10% 0%;
   }
   .custom_suggestions {
     display: none;
@@ -151,7 +151,7 @@
     
   } 
   .custom_all_posts {
-    margin: -33.5% 0% 10% 0%;
+    margin: 0% 0% 10% 0%;
   }
   .custom_suggestions {
     display: none;
@@ -168,7 +168,7 @@
     
   } 
   .custom_all_posts {
-    margin: -35.5% 0% 10% 0%;
+    margin: 0% 0% 10% 0%;
   }
   .custom_suggestions {
     display: none;
@@ -178,31 +178,49 @@
 @media only screen and (max-width: 480px) and (min-width : 445px) {
   .custom_post  {
     height: 45vh;
-    margin: 52.5% 0% 52.5% 0%;
-     /* padding: 0% -1% 0% -1%; */
+       margin: 10% 0% 50% 0%;
+    display: inline-block;
   } 
   .custom_home  {
     padding:0;
     
   } 
   .custom_all_posts {
-    margin: -33.5% 0% 10% 0%;
+    margin: 0% 0% 10% 0%;
   }
   .custom_suggestions {
     display: none;
   }
 }
-@media only screen and (max-width: 630px) and (min-width : 480px) {
+@media only screen and (max-width: 580px) and (min-width : 480px) {
   .custom_post  {
     height:60vh;
-    margin: 50.5% 0% 50.5% 0%;
+      margin: 10% 0% 30% 0%;
+    display: inline-block;
   } 
   .custom_home  {
      margin: 0% 0% 0% 0%;
      padding: 0%;
   } 
   .custom_all_posts {
-    margin-top: -30%;
+    margin-top: 0%;
+  }
+  .custom_suggestions {
+    display: none;
+  }
+}
+@media only screen and (max-width: 630px) and (min-width : 580px) {
+  .custom_post  {
+    height:60vh;
+      margin: 10% 0% 35% 0%;
+    display: inline-block;
+  } 
+  .custom_home  {
+     margin: 0% 0% 0% 0%;
+     padding: 0%;
+  } 
+  .custom_all_posts {
+    margin-top: 0%;
   }
   .custom_suggestions {
     display: none;
@@ -212,14 +230,15 @@
 @media only screen and (max-width: 700px) and (min-width : 630px) {
   .custom_post  {
     height:60vh;
-    margin: 40.5% 0% 40.5% 0%;
+     margin: 10% 0% 40% 0%;
+    display: inline-block;
   } 
   .custom_home  {
      margin: 0% 0% 0% 0%;
      padding: 0%;
   } 
   .custom_all_posts {
-    margin-top: -25%;
+    margin-top: 0%;
   }
   .custom_suggestions {
     display: none;
@@ -229,13 +248,14 @@
 @media only screen and (max-width: 768px) and (min-width : 700px) {
   .custom_post  {
     height: 70vh;
-    margin: 40.5% 0% 40.5% 0%;
+     margin: 10% 0% 30% 0%;
+    display: inline-block;
   } 
   .custom_home  {
      margin: 0% 5% 0% 5%;
   } 
   .custom_all_posts {
-    margin-top: -35%;
+    margin-top: 0%;
   }
   .custom_suggestions {
     display: none;
@@ -246,13 +266,14 @@
 @media only screen and (max-width: 992px) and (min-width : 768px) {
   .custom_post  {
     height: 70vh;
-     margin: 47.5% 0% 47.5% 0%;
+     margin: 10% 0% 30% 0%;
+    display: inline-block;
   } 
   .custom_home  {
      margin: 0% 10% 0% 10%;
   } 
   .custom_all_posts {
-    margin-top: -35%;
+    margin-top: 0%;
   }
   .custom_suggestions {
     display: none;
@@ -262,13 +283,14 @@
 @media only screen and (max-width: 1200px) and (min-width : 992px) {
   .custom_post  {
     height: 70vh;
-     margin: 47.5% 0% 47.5% 0%;
+   margin: 10% 0% 25% 0%;
+    display: inline-block;
   } 
   .custom_home  {
     margin: 0% -25% 0% 2%;
   } 
   .custom_all_posts {
-    margin-top: -15%;
+    margin-top: 0%;
   }
   .custom_suggestions {
     display: block;
@@ -278,13 +300,14 @@
 @media only screen and (min-width : 1200px) {
   .custom_post  {
     height: 70vh;
-    margin: 47.5% 0% 47.5% 0%;
+    margin: 10% 0% 25% 0%;
+    display: inline-block;
   } 
   .custom_home  {
     margin: 0% -10% 0 15%;
   } 
   .custom_all_posts {
-    margin-top: -15%;
+    margin-top: 0%;
   }
   .custom_suggestions {
     display: block;
