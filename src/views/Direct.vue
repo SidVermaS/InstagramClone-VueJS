@@ -1,13 +1,21 @@
 <template>
     <div class="custom_background custom_direct_background">
         <b-card no-body>
+            <b-row style="height: 90vh;" >
+                <span v-if="this.messages.length"></span>
+                <span v-else class="mx-auto my-auto">
+                    <b-img :src="require('../assets/images/direct_message.png')" class="rounded-circle border border-dark rotate-90 custom_direct_message"    /> 
+                    <span class="d-block mt-4 h5">Your Messages</span>
+                    <span>Start sending messages in the group.</span>
+                </span>
+            </b-row>
             <b-row style="height: 10vh;"></b-row>
         </b-card>
     </div>
 </template>
 
 <script> 
-    import Vuex from 'vuex'
+  import Vuex from 'vuex'
   import { mapGetters, mapActions } from 'vuex'
   import Connect from '../mixins/connect'
 export default {
@@ -24,17 +32,16 @@ export default {
     methods:    {   
         connectToChat() {
             console.log("Starting connection to WebSocket Server")
-            this.connection=new WebSocket(this.baseUrlWs)
-
-            this.connection.onmessage=function(event)   {
-                console.log('onmessage: ',event);
-                this.messages.push(event)
-            }
+            this.connection=new WebSocket(this.baseUrlWs)            
 
             this.connection.onopen=function(event)  {
                 console.log('onopen: ',event)
-                console.log("Successfully connected to the echo websocket server...")   
-                this.user={ user_id: this.$store.state.user.user_id, name: this.$store.state.user.name, photo_url: this.$store.state.user.photo_url }
+                // console.log("Successfully connected to the echo websocket server...",getUser())   
+                // this.user={ user_id: this.getUser.user_id, name: this.getUser.name, photo_url: this.getUser.photo_url }
+            }
+            this.connection.onmessage=function(event)   {
+                console.log('onmessage: ',event);
+                this.messages.push(event)
             }
             this.connection.onclose=function(event) {
                 console.log('onopen: ',event)
@@ -45,7 +52,7 @@ export default {
         },  
         sendMessage()   {
             if(this.connection)  {
-                
+                this.connection.send('"here homie"')
             }
         },   
         ...mapGetters([
@@ -55,9 +62,268 @@ export default {
             "setCurrentPage"
         ])  
     },
-    created()    {
+    mounted()    {
         this.setCurrentPage('direct_active')
         this.connectToChat()
     }
 }
 </script>
+
+<style scoped>
+    .custom_direct_message  {
+        width: 100px;
+        height: 100px;
+        padding: 12px;
+        float: center;
+        border-width: thick;
+    }
+    #custom_user_name {
+        font-weight: bold;
+        font-size: 79.5%;     
+        /* margin: 10% 0% -0% 0%; */
+        padding: 0% 0% -10% 0%;
+    }
+    #custom_user_role    {
+        font-size: 79.5%;
+    }
+    .custom_suggestion  {
+      font-weight: 550;
+      font-size: 95%;
+      text-align: left;
+    }
+   
+@media only screen and (max-width: 265px) {
+  .custom_direct_background  {
+      padding: 0% 0% 0% 0%; 
+    }
+ .custom_b-card  {
+    margin: 0% 20% 0% 20%;
+  }
+   .custom_explore_view    {
+        height: 55%;
+        width: 26%;
+        font-size: 75.5%;
+         margin-right: 20%;
+    }
+        .suggested_lg {
+      display: none;
+    }
+    .suggested_sm {
+      display: block;
+       margin-bottom: 3%;
+    }
+}
+@media only screen and (max-width: 300px) and (min-width : 265px) {
+  .custom_direct_background  {
+        padding: 0% 0% 0% 0%; 
+    }
+  .custom_b-card  {
+    margin: 0% 20% 0% 20%;
+  }
+   .custom_explore_view    {
+        height: 55%;
+        width: 26%;
+        font-size: 75.5%;
+         margin-right: 20%;
+    }
+        .suggested_lg {
+      display: none;
+    }
+    .suggested_sm {
+      display: block;
+       margin-bottom: 3%;
+    }
+}
+@media only screen and (max-width: 350px) and (min-width : 300px) {
+  .custom_direct_background  {
+        padding: 0% 0% 0% 0%; 
+    }
+  .custom_b-card  {
+    margin: 0% 20% 0% 20%;
+  }
+   .custom_explore_view    {
+        height: 55%;
+        width: 23.5%;
+        font-size: 75.5%;
+         margin-right: 15%;
+    }
+        .suggested_lg {
+      display: none;
+    }
+    .suggested_sm {
+      display: block;
+       margin-bottom: 3%;
+    }
+}
+@media only screen and (max-width: 445px) and (min-width : 350px) {
+  .custom_direct_background  {
+        padding: 0% 0% 0% 0%; 
+    }
+  .custom_b-card  {
+    margin: 0% 20% 0% 20%;
+  }
+   .custom_explore_view    {
+        height: 55%;
+        width: 20.5%;
+        font-size: 75.5%;
+         margin-right: 15%;
+    }
+        .suggested_lg {
+      display: none;
+    }
+    .suggested_sm {
+      display: block;
+       margin-bottom: 3%;
+    }
+}
+     /* Custom, iPhone Retina */ 
+@media only screen and (max-width: 480px) and (min-width : 445px) {
+  .custom_direct_background  {
+        padding: 0% 0% 0% 0%; 
+    }
+  .custom_b-card  {
+    margin: 0% 20% 0% 20%;
+  }
+   .custom_explore_view    {
+        height: 55%;
+        width: 18.5%;
+        font-size: 75.5%;
+         margin-right: 10%;
+    }
+        .suggested_lg {
+      display: none;
+    }
+    .suggested_sm {
+      display: block;
+       margin-bottom: 3%;
+    }
+}
+@media only screen and (max-width: 630px) and (min-width : 480px) {
+  .custom_direct_background  {
+        padding: 0% 0% 0% 0%; 
+    }
+  .custom_b-card  {
+    margin: 0% 20% 0% 20%;
+  }
+   .custom_explore_view    {
+        height: 55%;
+        width: 15%;
+        font-size: 75.5%;
+         margin-right: 10%;
+    }
+        .suggested_lg {
+      display: none;
+    }
+    .suggested_sm {
+      display: block;
+      margin-bottom: 3.0%;
+    }
+}
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width: 700px) and (min-width : 630px) {
+ .custom_direct_background  {
+        padding: 0% 7% 0% 7%; 
+    }
+  .custom_b-card  {
+    margin: 0% 20% 0% 20%;
+  }
+   .custom_explore_view    {
+        height: 55%;
+        width: 15%;
+        font-size: 75.5%;
+         margin-right: 10%;
+    }
+        .suggested_lg {
+      display: block;
+    }
+    .suggested_sm {
+      display: none;
+    }
+}
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width: 768px) and (min-width : 700px) {
+  .custom_direct_background  {
+        padding: 0% 7% 0% 7%; 
+    }
+  .custom_b-card  {
+    margin: 0% 20% 0% 20%;
+  }
+   .custom_explore_view    {
+          height: 55%;
+        width: 15%;
+        font-size: 75.5%;
+         margin-right: 10%;
+    }
+        .suggested_lg {
+      display: block;
+    }
+    .suggested_sm {
+      display: none;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width: 992px) and (min-width : 768px) {
+  .custom_direct_background  {
+        padding: 2% 8.5% 2% 8.5%; 
+    }
+  .custom_b-card  {
+    margin: 0% 20% 0% 20%;
+  }
+   .custom_explore_view    {
+        height: 55%;
+        width: 15%;
+        font-size: 75.5%;
+         margin-right: 10%;
+    }    
+    .suggested_lg {
+      display: block;
+    }
+    .suggested_sm {
+      display: none;
+    }
+}
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 1200px) and (min-width : 992px) {
+  .custom_direct_background  {
+        padding: 2% 17.5% 2% 17.5%; 
+    }
+  .custom_b-card  {
+    margin: 0% 20% 0% 20%;
+  }
+   .custom_explore_view    {
+        height: 55%;
+        width: 15%;
+        font-size: 75.5%;
+        margin-right: 10%;
+    }
+        .suggested_lg {
+      display: block;
+    }
+    .suggested_sm {
+      display: none;
+    }
+}
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  .custom_direct_background  {
+        padding: 2% 22.5% 2% 22.5%; 
+    }
+  .custom_b-card  {
+    margin: 0% 20% 0% 20%;
+  }
+   .custom_explore_view    {
+        height: 55%;
+        width: 15%;
+        font-size: 85.5%;
+        margin-right: 10%;
+    }
+    .suggested_lg {
+      display: block;
+    }
+    .suggested_sm {
+      display: none;
+    }
+}
+
+</style>

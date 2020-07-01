@@ -274,7 +274,7 @@
     .custom_post_photo_row   {
         margin: 1.5% 0% 0% 0%;
         width: 100%;
-        height: 200px;
+        height: 190px;
     }
     .custom_user_profile_background {
         padding: 2% 0% 10% 0%;
@@ -350,7 +350,7 @@
     .custom_post_photo_row   {
        margin: 2.5% 0% 0% 0%;
         width: 100%;
-        height: 250px;
+        height: 245px;
     }
     .custom_user_profile_background {
         padding: 2% 15% 10% 15%;
@@ -387,7 +387,7 @@
     .custom_post_photo_row   {
         margin: 2.5% 0% 0% 0%;
         width: 100%;
-        height: 250px;
+        height: 245px;
     }
     .custom_user_profile_background {
         padding: 2% 15% 10% 15%;

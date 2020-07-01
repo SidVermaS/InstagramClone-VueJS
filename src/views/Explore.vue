@@ -208,7 +208,7 @@ export default {
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width: 700px) and (min-width : 630px) {
  .custom_explore_background  {
-        padding: 4% 7% 0% 7%; 
+        padding: 4% 7% 4% 7%; 
     }
   .custom_b-card  {
     margin: 0% 20% 0% 20%;
@@ -229,7 +229,7 @@ export default {
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width: 768px) and (min-width : 700px) {
   .custom_explore_background  {
-        padding: 4% 7% 0% 7%; 
+        padding: 4% 7% 4% 7%; 
     }
   .custom_b-card  {
     margin: 0% 20% 0% 20%;
@@ -251,7 +251,7 @@ export default {
 /* Small Devices, Tablets */
 @media only screen and (max-width: 992px) and (min-width : 768px) {
   .custom_explore_background  {
-        padding: 4% 8.5% 0% 8.5%; 
+        padding: 4% 8.5% 4% 8.5%; 
     }
   .custom_b-card  {
     margin: 0% 20% 0% 20%;
@@ -272,7 +272,7 @@ export default {
 /* Medium Devices, Desktops */
 @media only screen and (max-width: 1200px) and (min-width : 992px) {
   .custom_explore_background  {
-        padding: 4% 17.5% 0% 17.5%; 
+        padding: 4% 17.5% 4% 17.5%; 
     }
   .custom_b-card  {
     margin: 0% 20% 0% 20%;
@@ -293,7 +293,7 @@ export default {
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
   .custom_explore_background  {
-        padding: 4% 22.5% 0% 22.5%; 
+        padding: 4% 22.5% 4% 22.5%; 
     }
   .custom_b-card  {
     margin: 0% 20% 0% 20%;
