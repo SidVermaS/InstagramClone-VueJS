@@ -64,46 +64,28 @@
             }
         },    
         methods:    {
-            async addComment()    {
-                if(this.comment_text!=='')  {
-                    const comment={
-                        comment_text: this.comment_text,
-                        post_id: this.post.post_id,
-                        user_id: this.$store.state.user.user_id,
-                        name: this.$store.state.user.name                    }
-                   
-                    const { status, body }=await this.postRequest(this.subUrl.comment, comment)
-                    const message=body['message']
-
-                    if(status===201)  {
-                         this.comment_text=''
-                        if(this.post.comments===undefined) {
-                            this.post.comments=[]
-                        }
-                        this.post.comments.push(comment)
-
-                    } else if(!message)  {
-                        message='Failed to connect'
-                        this.emit('show-dialog', message)                        
-                    } else  {
-                        this.emit('show-dialog',message)
-                    }
-                }
-            },
+           
             async giveReaction()    {
                 const reaction={ status: this.post.status===null || this.post.status!=='like'?'like':'remove', post_id: this.post.post_id, user_id: this.post.user_id, index: this.index }    
                 
                 this.$emit('give-reaction', reaction) 
+           },
+           async addComment()   {
+               const comment={
+                    comment_text: this.comment_text,
+                    post_id: this.post.post_id,
+                    index: this.index     
+               }
+               this.comment_text=''
+               this.$emit('add-comment',comment)
            },
             navigateToUser: async function()    {
                 this.$emit('navigate-to-user', this.post.user_id)
             },
             navigateToFullPost: async function()    {
                this.$emit('navigate-to-post', this.post.post_id) 
-            }
-        },
-        computed:   {
-        }    
+            },
+        },    
 
 
             

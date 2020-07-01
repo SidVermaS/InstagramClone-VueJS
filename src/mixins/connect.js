@@ -3,10 +3,12 @@ import store from '../store'
 export default  {
     data()  {
         let mainUrl='http://localhost:3000/'
+        
         return  {
             baseUrl: mainUrl,
             baseUrlPostPhoto: `${mainUrl}uploads/posts/`, 
             baseUrlUserPhoto: `${mainUrl}uploads/users/`,
+            baseUrlWs: 'ws://localhost:3030/chat',
             subUrl: {
                 register: 'register/',
                 login: 'login/',
@@ -24,8 +26,8 @@ export default  {
             headers: {
                 'Content-type': 'application/json',
                 'Accept': 'application/json',
-                'authorization': store.state.user===undefined || store.state.user===null?null:store.state.user.token
-            },
+                'authorization': store.state.user==undefined || store.state.user===null?null:store.state.user.token
+            }
         }        
     },
     methods:    {

@@ -11,7 +11,9 @@
                     <span class="custom_faded_color custom_personal_suggestion custom_font_size" >Suggestions For You</span>
                 </b-col>
                 <b-col cols="1">
-                    <span class="custom_personal_suggestion custom_font_size" style="margin-left: -110%;">See All</span>
+                    <router-link to="\explore">
+                        <span class="custom_personal_suggestion custom_font_size" style="margin-left: -110%;">See All</span>
+                    </router-link>     
                 </b-col>
             </b-row>
             <div style="margin-top: 0.7%; ">

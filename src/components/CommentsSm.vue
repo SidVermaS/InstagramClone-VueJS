@@ -1,5 +1,6 @@
 <template>
     <div class="custom_comments_sm_background">
+        <b-icon icon="arrow-left" size="2.4" v-on:click="showCommentsSm" class="text-left float-left"></b-icon>
         <b-row class="w-100 text-left" style="height: 10vh;">
             <b-row class="w-100 ml-3 pt-0 pb-0 text-left" align-h="between">
                     <b-col cols="10">
@@ -30,7 +31,7 @@
             <b-row class="w-100 m-0 p-0 text-left" style="">  
                 <b-row v-for="(comment, index) in comments.slice().reverse()" :key="index" class="w-100 mx-0 my-2 p-0 text-left" >
                     <b-col cols="2" class="m-0 pl-3 pr-2">
-                        <b-img :src="`http://localhost:3000/uploads/users/${comment.user.photo_url}`" rounded="circle" class="custom_user_photo m-0 p-0"></b-img>
+                        <b-img :src="`${baseUrlUserPhoto}${comment.user.photo_url}`" rounded="circle" class="custom_user_photo m-0 p-0"></b-img>
                     </b-col>
                     <b-col cols="10" class="m-0 p-0 ">
                         <span class="custom_full_post_user_name" style="display: inline-block;">{{comment.user.name}}</span>
@@ -70,7 +71,7 @@
     export default  {
         name: 'CommentsSm',
         mixins: [ Connect ],
-        props:  ['post', 'comments' ],    
+        props:  ['post', 'comments', 'isCommentsShowed' ],    
         data()  {
             return  {
                 comment_text: ''
@@ -84,12 +85,19 @@
                
                 this.$emit('give-reaction', reaction) 
            },
+           async retrieveAllComments()  {
+               this.$emit('retrieve-all-comments')
+           },
+           async showCommentsSm() {
+               this.$emit('show-comments-sm')
+           },
             navigateToUser: async function()    {
                 this.$emit('navigate-to-user', this.post.user_id)
             },
             navigateToFullPost: async function()    {
                this.$emit('navigate-to-post', this.post.post_id) 
-            }
+            },
+
         },
         computed:   {
         }    

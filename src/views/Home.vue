@@ -5,7 +5,7 @@
         <b-row class="custom_home">
           <b-col class="custom_all_posts">
               <span v-for="(post, index) in posts" :key="post.post_id" class="custom_post">
-                <Post :post="post" :index="index" v-on:give-reaction="giveReaction" v-on:navigate-to-user="navigateToUser" v-on:navigate-to-post="navigateToFullPost" v-on:show-dialog="showDialog" />
+                <Post :post="post" :index="index" v-on:give-reaction="giveReaction" v-on:add-comment="addComment" v-on:navigate-to-user="navigateToUser" v-on:navigate-to-post="navigateToFullPost" v-on:show-dialog="showDialog" />
               </span>  
           </b-col> 
           <b-col class="custom_suggestions">
@@ -78,6 +78,33 @@
         }  
 
       },
+        async addComment(comment)    {
+                    const formData={
+                        comment_text: comment.comment_text,
+                        post_id: comment.post_id,
+                        user_id: this.$store.state.user.user_id,
+                        name: this.$store.state.user.name                    
+                    }
+                   
+                    const { status, body }=await this.postRequest(this.subUrl.comment, formData)
+                    const message=body['message']
+
+                    if(status===201)  {
+                        formData.comment_id=body['comment_id']
+                        if(this.posts[comment.index].comments===undefined) {
+                            this.posts[comment.index].comments=[]
+                        }
+                        // this.posts[comment.index].comments.push(formData)
+                        // this.posts[comment.index].comments=this.posts[comment.index].comments
+                        this.posts[comment.index].comments.splice(formData)
+                    } else if(!message)  {
+                        message='Failed to connect'
+                        this.emit('show-dialog', message)                        
+                    } else  {
+                        this.emit('show-dialog',message)
+                    }
+                
+            },
       navigateToUser: async function(user_id)   {
         this.$router.push({ name: 'User', params: { user_id: user_id }})
       },

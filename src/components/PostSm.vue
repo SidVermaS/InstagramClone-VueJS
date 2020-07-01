@@ -1,6 +1,6 @@
 <template>
     <div>
-        <CommentsSm v-if="isCommentsShowed" :post="post" :comments="comments"   /> 
+        <CommentsSm v-if="isCommentsShowed" :post="post" :comments="comments" v-on:show-comments-sm="showCommentsSm" v-on:retrieve-all-comments="retrieveAllComments"   /> 
         <b-card v-else no-body class="p-0">
             <div class="custom_user_background">
                 <span v-on:click="navigateToUser">
@@ -53,6 +53,9 @@
             async giveReaction()    {
                
                 this.$emit('give-reaction', reaction) 
+           },
+           async retrieveAllComments()  {
+               this.$emit('retrieve-all-comments')
            },
             navigateToUser: async function()    {
                 this.$emit('navigate-to-user', this.post.user_id)

@@ -86,10 +86,10 @@
         </div>
         <div class="custom_post_line custom_post_line_margin"></div> 
         <span v-if="posts.length>0">
-            <b-row v-for="indexRow in (Math.floor(posts.length/3)+1)" :key="indexRow"  class="custom_post_photo_row p-0">
+            <b-row v-for="indexRow in (Math.floor(posts.length/3))" :key="indexRow" class="custom_post_photo_row p-0">
 
                 <b-col v-for="indexCol in 3" :key="indexCol" class="p-0 custom_post_photo_column">
-                        <b-img v-if="posts[indexRow*indexCol]!==undefined" :src="`${baseUrlPostPhoto}${posts[indexRow*indexCol].photo_url}`" class="p-0 m-0" style="width: 100%; height: 100%"  />
+                    <b-img v-if="posts[indexRow*(indexCol-1)]!==undefined" :src="`${baseUrlPostPhoto}${posts[indexRow*(indexCol-1)].photo_url}`" class="p-0 m-0" style="width: 100%; height: 100%"  />
                   
                 </b-col>
             </b-row>

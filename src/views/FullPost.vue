@@ -38,7 +38,7 @@
                             <b-row class="w-100 m-0 p-0 text-left" style="">  
                                 <b-row v-for="(comment, index) in comments.slice().reverse()" :key="index" class="w-100 mx-0 my-2 p-0 text-left" >
                                     <b-col cols="2" class="m-0 pl-3">
-                                        <b-img :src="`http://localhost:3000/uploads/users/${comment.user.photo_url}`" rounded="circle" class="custom_user_photo m-0 p-0"></b-img>
+                                        <b-img :src="`${baseUrlUserPhoto}${comment.user.photo_url}`" rounded="circle" class="custom_user_photo m-0 p-0"></b-img>
                                     </b-col>
                                     <b-col cols="10" class="m-0 p-0">
                                         <span class="custom_full_post_user_name" style="display: inline-block;">{{comment.user.name}}</span>
@@ -74,7 +74,7 @@
                 </b-row>
             </b-card>
             <span class="p-0 m-0 custom_comment_mobile">
-                <PostSm :post="post" :comments="comments"  />
+                <PostSm :post="post" :comments="comments" v-on:retrieve-all-comments="retrieveAllComments"  />
             </span>
         </span>
         
@@ -140,12 +140,12 @@
             },    
              async giveReaction()  {
         
-                const formData={ status: this.post.status===null || this.post.status!=='like'?'like':'remove', post_id: parseInt(reaction.post_id), user_id: parseInt(reaction.user_id) }
+                const formData={ status: this.post.status===null || this.post.status!=='like'?'like':'remove', post_id: this.post.post_id, user_id: this.post.user_id }
                 
                 const { status, body }=await this.patchRequest(`${this.subUrl.reaction}`, formData)
                 this.message=body['message']
                 if(status===200)  {
-                    this.post.status=reaction.status
+                    this.post.status=formData.status
                     if(reaction.status==='like') {
                         this.post.reactions_count=this.post.reactions_count+1
                     } else  {
@@ -222,7 +222,7 @@
         display: block;
     }
         .custom_full_post_background    {
-        padding: 20% 0% 0% 0%;
+        padding: 5% 0% 0% 0%;
     }
     .custom_b-card  {
         height: 80vh;
@@ -237,7 +237,7 @@
         display: block;
     }
         .custom_full_post_background    {
-        padding: 15.5% 0% 0% 0%;
+        padding: 5.5% 0% 0% 0%;
     }
     .custom_b-card  {
         height: 80vh;
@@ -253,7 +253,7 @@
         display: block;
     }
         .custom_full_post_background    {
-        padding: 9.5% 0% 0% 0%;
+        padding: 5.5% 0% 0% 0%;
     }
     .custom_b-card  {
         height: 80vh;
@@ -269,7 +269,7 @@
         display: block;
     }
     .custom_full_post_background    {
-        padding: 12.5% 0% 0% 0%;
+        padding: 5.5% 0% 0% 0%;
     }
     .custom_b-card  {
         height: 80vh;
@@ -284,7 +284,7 @@
         display: block;
     }
     .custom_full_post_background    {
-        padding: 8.5% 0% 0% 0%;
+        padding: 5.5% 0% 0% 0%;
     }
     .custom_b-card  {
         height: 80vh;
@@ -299,7 +299,7 @@
         display: none;
     }
         .custom_full_post_background    {
-        padding: 9.5% 1% 0% 1%;
+        padding: 5.5% 1% 0% 1%;
     }
     .custom_b-card  {
         height: 80vh;
