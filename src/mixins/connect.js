@@ -8,7 +8,7 @@ export default  {
             baseUrl: mainUrl,
             baseUrlPostPhoto: `${mainUrl}uploads/posts/`, 
             baseUrlUserPhoto: `${mainUrl}uploads/users/`,
-            baseUrlWs: 'ws://localhost:3030/chat',
+            baseUrlWs: 'ws://localhost:3000/',
             subUrl: {
                 register: 'register/',
                 login: 'login/',

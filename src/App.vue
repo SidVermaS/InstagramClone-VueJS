@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-     <b-navbar v-if="getUser.user_id!=undefined" type="light" fixed="top" sticky class="border" style="background: white; ">
+     <b-navbar v-if="getUser!=null" type="light" fixed="top" sticky class="border" style="background: white; ">
         <router-link to="/">
           <b-navbar-brand>
             <b-img :src="require('./assets/images/navbar/instagram.png')" alt="Instagram" />            
