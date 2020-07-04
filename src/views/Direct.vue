@@ -1,19 +1,19 @@
 <template>
     <div class="custom_background custom_direct_background">
         <b-card no-body>
-            <b-row style="height: 75vh;"  >
-                <span v-if="messages.length" class="w-100">
+            <b-row style="height: 75vh;">
+                <span v-if="messages.length" class="w-100 px-3">
                   <Messages :messages="messages" :user_id="user.user_id"  />
                 </span>
                 <span v-else class="mx-auto my-auto">
-                    <b-img :src="require('../assets/images/direct_message.png')" class="rounded-circle border border-dark rotate-90 custom_direct_message"  /> 
-                    <span class="d-block mt-4 h5">Your Messages</span>
-                    <span class="custom_faded_color" style="font-size: 15px;">Start sending messages in the group.</span>
+                  <b-img :src="require('../assets/images/direct_message.png')" class="rounded-circle border border-dark rotate-90 custom_direct_message"  /> 
+                  <span class="d-block mt-4 h5">Your Messages</span>
+                  <span class="custom_faded_color" style="font-size: 15px;">Start sending messages in the group.</span>
                 </span>
             </b-row>
-            <b-row style="height: 10vh;">
-              <b-input-group>
-                <b-form-textarea rows="1" max-rows="4" placeholder="Message..." sm v-model="message_text" class="custom_textarea_comment"></b-form-textarea>
+            <b-row style="height: 10vh;" class="px-3 pb-3 pt-2">
+              <b-input-group class="custom_input_group">
+                <b-form-textarea rows="1" max-rows="2" placeholder="Message..." size="sm" v-model="message_text" class="custom_textarea_comment"></b-form-textarea>
                 <b-input-group-append>
                   <span v-on:click="sendMessage" class="custom_textarea_comment_button custom_secondary_color">Send</span>
                 </b-input-group-append>
@@ -93,6 +93,10 @@ export default {
 </script>
 
 <style scoped>
+    .custom_input_group {
+      border: 1px solid #b8b3b3;
+      border-radius: 20px;
+    }
     .custom_direct_message  {
         width: 100px;
         height: 100px;
@@ -114,8 +118,9 @@ export default {
       font-size: 95%;
       text-align: left;
     }
-     .custom_textarea_comment, .custom_textarea_comment:focus  {
-        padding-bottom: 0%;    
+      .custom_textarea_comment, .custom_textarea_comment:focus  {
+        margin-right: 3.5%;
+        padding: 0.5% 0% 0% 5%;   
         border: none;
         overflow: auto;
         outline: none;
@@ -129,12 +134,12 @@ export default {
 
        resize: none;
 
-    }
-      .custom_textarea_comment_button  {
+    } 
+    .custom_textarea_comment_button  {
        font-size: 80%;
        font-weight: 700;       
        text-align: center;
-       padding: 50% 0% 0% 0%;
+       margin: 45% 15% 0% -40%;
     }
    
 @media only screen and (max-width: 265px) {

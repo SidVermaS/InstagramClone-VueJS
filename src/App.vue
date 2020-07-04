@@ -3,7 +3,7 @@
      <b-navbar v-if="getUser!=null" type="light" fixed="top" sticky class="border" style="background: white; ">
         <router-link to="/">
           <b-navbar-brand>
-            <b-img :src="require('./assets/images/navbar/instagram.png')" alt="Instagram" />            
+            <b-img :src="require('./assets/images/navbar/instagram.png')" alt="Instagram" class="ml-xl-5 ml-lg-5 ml-md-5 ml-sm-3" />            
           </b-navbar-brand>
         </router-link>
         <b-navbar-nav class="ml-auto">
