@@ -62,22 +62,21 @@ export default {
             
             this.connection.onmessage=function(event)   {
                 console.log('onmessage: ',event.data)
-                
                 externalContext.messages.push(JSON.parse(event.data))
             }
             this.connection.onclose=function(event) {
-                console.log('onopen: ',event)
+              console.log('onopen: ',event)
             }
             this.connection.onerror=function(event) {
-                console.log('onerror: ',event)
+              console.log('onerror: ',event)
             }
         },  
         sendMessage()   {
-            if(this.connection)  {
-                const message=JSON.stringify({user: this.user, message_text: this.message_text})
-                this.connection.send(message)
-                this.message_text=''
-            }
+          if(this.connection && this.message_text!=='')  {
+            const message=JSON.stringify({user: this.user, message_text: this.message_text})
+            this.connection.send(message)
+            this.message_text=''
+          }
         },   
         ...mapGetters([
             'getUser'
