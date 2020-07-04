@@ -1,9 +1,9 @@
 <template>
     <div class="custom_background custom_direct_background">
         <b-card no-body>
-            <b-row style="height: 75vh;" >
-                <span v-if="messages.length">
-                  <Messages :messages="messages" :user_id="user.user_id" />
+            <b-row style="height: 75vh;"  >
+                <span v-if="messages.length" class="w-100">
+                  <Messages :messages="messages" :user_id="user.user_id"  />
                 </span>
                 <span v-else class="mx-auto my-auto">
                     <b-img :src="require('../assets/images/direct_message.png')" class="rounded-circle border border-dark rotate-90 custom_direct_message"  /> 
