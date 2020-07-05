@@ -16,7 +16,7 @@ export default  {
                 user: 'user/',
                 reaction: 'reaction/',
                 comment: 'comment/',
-                
+                upload: 'upload/'
 
             },
             childUrl:   {
@@ -71,6 +71,23 @@ export default  {
                     method: 'PATCH',
                     headers: this.headers,
                     body: JSON.stringify(formData)                
+                }
+                fetch(`${this.baseUrl}${url}`, options).then(response=>    {
+                    response.json().then(jsonData=> {
+                        resolve({ status: response.status, body: jsonData })
+                    })
+                    .catch(err=>    {
+                        return resolve(err)
+                    })
+                })
+            })    
+        },
+        multipartRequest: function(url, formData)   {
+            return new Promise((resolve)=>  {
+                const options={
+                    method: 'POST',
+                    // headers: { 'Content-Type': 'multipart/form-data' },
+                    body: formData               
                 }
                 fetch(`${this.baseUrl}${url}`, options).then(response=>    {
                     response.json().then(jsonData=> {
