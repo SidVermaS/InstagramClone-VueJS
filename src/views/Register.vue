@@ -64,6 +64,7 @@
                 formData:   {
                     name: '',
                     role: '',
+                    photo_url: '',
                     mobile_no: '',
                     password: '',
                 },
@@ -75,34 +76,42 @@
         methods:    {
 
             registerUser: async function()   {
-                
-                // const { status, body }=await this.postRequest(`${this.subUrl.register}`, this.formData)
-                // this.message=body['message']
-                // if(status===201)    {
-
-                //     this.formData={
-                //         mobile_no: '',
-                //         password: '',
-                //         name: '',
-                //         role: ''
-                //     }
-                // }   else if(!this.message)    {
-                //     this.message='Failed to connect'
-                // }
-                const formData1=new FormData()
-                formData1.append('file', this.imageFile)
-                const { status, body }=await this.multipartRequest(`${this.subUrl.upload}?file_type=users`, formData1)
+              const photo_url=await this.uploadPhoto()
+              if(photo_url) {  
+                this.formData.photo_url=photo_url
+                const { status, body }=await this.postRequest(`${this.subUrl.register}`, this.formData)
                 this.message=body['message']
-                 if(status===200)    {
+                if(status===201)    {
 
-                    this.$router.replace('/')
-
-                }   else    {  
-                    if(!this.message)    {
-                        this.message='Failed to connect'
-                    }      
-                    this.$refs.alertdialog.showDialog()  
-                } 
+                    this.formData={
+                        mobile_no: '',
+                        password: '',
+                        name: '',
+                        role: '',
+                        photo_url: ''
+                    }
+                    this.imageFile=null
+                    this.imageUrl=null
+                }   else if(!this.message)    {
+                    this.message='Failed to connect'
+                }
+                this.$refs.alertdialog.showDialog()   
+            }
+            },
+            async uploadPhoto() {
+              const formData1=new FormData()
+              formData1.append('file', this.imageFile)
+              const { status, body }=await this.multipartRequest(`${this.subUrl.upload}?file_type=users`, formData1)
+              this.message=body['message']
+              if(status===201)  {
+              }  else if(!this.message)  {
+                this.message='Failed to connect'
+                this.$refs.alertdialog.showDialog()                    
+              } else  {
+                 this.$refs.alertdialog.showDialog()
+              } 
+              console.log('pu: ',body['photo_url'])
+              return body['photo_url']
             },
             onFileChanged: async function(e)   {
                 this.imageFile=e.target.files[0]

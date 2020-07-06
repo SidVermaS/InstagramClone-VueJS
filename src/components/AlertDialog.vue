@@ -1,9 +1,9 @@
 <template>
     <div v-if="showAlert">
         <b-button @click="removeDialog" id="close-button">X</b-button>
-        <b-alert variant="secondary" id="message-alert" show>
+        <!-- <b-alert variant="secondary" id="message-alert" show>
             <p> {{ message }} </p>
-        </b-alert>
+        </b-alert> -->
     </div>
 </template>
 
@@ -37,7 +37,7 @@
     #message-alert  {
         position: relative;
         z-index: 1;
-        background: #2176E3;
+        background: rgb(73, 70, 70);
     }
     #close-button   {
         position: absolute;
