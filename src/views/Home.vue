@@ -3,7 +3,7 @@
       <AlertDialog v-bind:message="message" ref="alertdialog" />
       <!-- <b-container fluid=true> -->
         <b-row class="custom_home">
-          <b-col class="">
+          <b-col class="custom_all_posts">
               <span v-for="(post, index) in posts" :key="post.post_id" class="custom_post">
                 <Post :post="post" :index="index" v-on:give-reaction="giveReaction" v-on:add-comment="addComment" v-on:navigate-to-user="navigateToUser" v-on:navigate-to-post="navigateToFullPost" v-on:show-dialog="showDialog" />
                 <div class="custom_post_margin"></div>
@@ -263,7 +263,7 @@
      padding: 0%;
   } 
   .custom_all_posts {
-    margin-top: 0%;
+    margin-top: 2.5%;
   }
   .custom_suggestions {
     display: none;
@@ -283,7 +283,7 @@
      padding: 0%;
   } 
   .custom_all_posts {
-    margin-top: 0%;
+    margin-top: 2.5%;
   }
   .custom_suggestions {
     display: none;
@@ -302,7 +302,7 @@
      margin: 0% 5% 0% 5%;
   } 
   .custom_all_posts {
-    margin-top: 0%;
+    margin-top: 2.5%;
   }
   .custom_suggestions {
     display: none;
@@ -322,7 +322,7 @@
      margin: 0% 10% 0% 10%;
   } 
   .custom_all_posts {
-    margin-top: 0%;
+    margin-top: 2.5%;
   }
   .custom_suggestions {
     display: none;
@@ -341,7 +341,7 @@
     margin: 0% -25% 0% 2%;
   } 
   .custom_all_posts {
-    margin-top: 0%;
+    margin-top: 2.5%;
   }
   .custom_suggestions {
     display: block;
@@ -360,7 +360,7 @@
     margin: 0% -10% 0 15%;
   } 
   .custom_all_posts {
-    margin-top: 0%;
+    margin-top: 2.5%;
   }
   .custom_suggestions {
     display: block;

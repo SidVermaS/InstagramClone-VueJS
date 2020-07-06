@@ -7,12 +7,12 @@
                     </b-img>
                     <span  style="display: inline-block;">
                         <p id="custom_user_name">{{this.user.name}}</p>      
-                        <span id="custom_user_role" class="custom_faded_color">{{this.user.role}}</span>           
+                        <span id="custom_user_role" class="custom_faded_color">Member</span>           
                     </span>
                 </span>
             </b-col>    
             <b-col cols="1" style="margin-top: 1%;">
-                <span  v-on:click="navigateToUser" class="custom_secondary_color" id="custom_view">View</span>
+                <span v-on:click="navigateToUser" class="custom_secondary_color" id="custom_view">View</span>
             </b-col>
         </b-row>
     </div>
