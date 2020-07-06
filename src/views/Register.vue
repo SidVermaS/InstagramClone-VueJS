@@ -9,7 +9,7 @@
                     </b-card-title>
                     <b-form @submit.prevent="registerUser" class="form-signin">
                          <div class="profile_photo_background">
-                            <input type="file" name="photo" ref="fileInput" v-on:change="onFileChanged" style="display: none;">   
+                            <input type="file" ref="fileInput" v-on:change="onFileChanged" style="display: none;">   
                                 
                             <b-avatar button :src="imageUrl" size="8.0rem" v-on:click="$refs.fileInput.click()" variant="info" class="profile_photo p-0"></b-avatar>      
                           
@@ -33,9 +33,9 @@
                             <label for="input-5">Password</label>
                         </div>  
 
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase mt-2" type="submit">Sign in</button>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase mt-2" type="submit">Register</button>
                         <hr class="my-3">      
-                        <button v-on:click="navigate" style="background: white;" class="btn btn-lg btn-block text-uppercase" >Go back</button>
+                        <button v-on:click="navigate" style="background: white;" class="btn btn-lg btn-block custom_back_button text-uppercase" >Go back</button>
                     </b-form>    
                 </b-card>
             </b-row>
@@ -120,8 +120,8 @@
 </script>           
             
 <style scoped>            
-    .back_button    {
-        margin-top: 5%;
+    .custom_back_button    {
+       border: 1px solid #000;
     }
     .profile_photo_background   {
         position: relative;

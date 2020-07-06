@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-     <b-navbar v-if="getUser!=null" type="light" fixed="top" sticky class="border" style="background: white; ">
+     <b-navbar v-if="this.$store.state.user!=undefined && this.$store.state.user!=null" type="light" fixed="top" sticky class="border" style="background: white; ">
         <router-link to="/">
           <b-navbar-brand>
             <b-img :src="require('./assets/images/navbar/instagram.png')" alt="Instagram" class="ml-xl-5 ml-lg-5 ml-md-5 ml-sm-3" />            
@@ -19,13 +19,21 @@
                 <DirectActiveIcon v-if="getCurrentPage==='direct_active'"  />
                 <DirectIcon v-else  />
               </router-link>
-            </b-nav-item>
+            </b-nav-item>          
             <b-nav-item>
               <router-link to="/explore">
                 <ExploreActiveIcon v-if="getCurrentPage==='explore_active'"  />
                 <ExploreIcon v-else />
               </router-link>
             </b-nav-item>
+
+            <b-nav-item>
+              <router-link to="/new-post">
+                <NewPostActiveIcon v-if="getCurrentPage==='new_post_active'"  />
+                <NewPostIcon v-else  />
+              </router-link>
+            </b-nav-item>
+
             <b-nav-item>
               <router-link :to="`/user/${this.$store.state.user.user_id}`">
                 <b-avatar :src="`${this.baseUrlUserPhoto}${getUser.photo_url}`" size="1.5em" />
@@ -46,6 +54,8 @@ import HomeIcon from './assets/images/navbar/home.svg'
 import HomeActiveIcon from './assets/images/navbar/home_active.svg'
 import DirectIcon from './assets/images/navbar/direct.svg'
 import DirectActiveIcon from './assets/images/navbar/direct_active.svg'
+import NewPostIcon from './assets/images/navbar/new_post.svg'
+import NewPostActiveIcon from './assets/images/navbar/new_post_active.svg'
 import ExploreIcon from './assets/images/navbar/explore.svg'
 import ExploreActiveIcon from './assets/images/navbar/explore_active.svg'
 export default {
@@ -58,6 +68,8 @@ export default {
     HomeActiveIcon,
     DirectIcon,
     DirectActiveIcon,
+    NewPostIcon,
+    NewPostActiveIcon,
     ExploreIcon,
     ExploreActiveIcon
   },

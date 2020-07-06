@@ -3,7 +3,7 @@
         <b-row >
             <b-col cols="3">
                 <span v-on:click="navigateToUser">
-                    <b-img :src="`${this.baseUrlUserPhoto}${this.user.photo_url}`" rounded="circle"   id="custom_user_photo" style="display: inline-block;">
+                    <b-img :src="`${this.baseUrlUserPhoto}${this.user.photo_url}`" rounded="circle"  id="custom_user_photo" style="display: inline-block;">
                     </b-img>
                     <span  style="display: inline-block;">
                         <p id="custom_user_name">{{this.user.name}}</p>      

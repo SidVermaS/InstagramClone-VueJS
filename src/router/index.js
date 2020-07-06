@@ -8,6 +8,7 @@ import User from '../views/User.vue'
 import FullPost from '../views/FullPost.vue'
 import Explore from '../views/Explore.vue'
 import Direct from '../views/Direct.vue'
+import NewPost from '../views/NewPost.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
@@ -38,6 +39,11 @@ Vue.use(VueRouter)
     path: '/post/:post_id/',
     name: 'FullPost',
     component: FullPost
+  },
+  {
+    path: '/new-post',
+    name: 'NewPost',
+    component: NewPost,
   },
   {
     path: '/login',
