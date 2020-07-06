@@ -3,9 +3,10 @@
       <AlertDialog v-bind:message="message" ref="alertdialog" />
       <!-- <b-container fluid=true> -->
         <b-row class="custom_home">
-          <b-col class="custom_all_posts">
+          <b-col class="">
               <span v-for="(post, index) in posts" :key="post.post_id" class="custom_post">
                 <Post :post="post" :index="index" v-on:give-reaction="giveReaction" v-on:add-comment="addComment" v-on:navigate-to-user="navigateToUser" v-on:navigate-to-post="navigateToFullPost" v-on:show-dialog="showDialog" />
+                <div class="custom_post_margin"></div>
               </span>  
           </b-col> 
           <b-col class="custom_suggestions">
@@ -35,7 +36,6 @@
     },
     data()  {
       return  {
-        displayed_posts: [],
         posts: [],
         page: -1,
         message: '',
@@ -58,18 +58,20 @@
         }
       },
       async giveReaction(reaction)  {
-        
-        const formData={ status: reaction.status, post_id: parseInt(reaction.post_id), user_id: parseInt(reaction.user_id) }
-        
-        const { status, body }=await this.patchRequest(`${this.subUrl.reaction}`, formData)
-        this.message=body['message']
-        if(status===200)  {
           this.posts[reaction.index].status=reaction.status
           if(reaction.status==='like') {
             this.posts[reaction.index].reactions_count=this.posts[reaction.index].reactions_count+1
           } else  {
             this.posts[reaction.index].reactions_count=this.posts[reaction.index].reactions_count-1
-          }
+          }  
+
+
+        const formData={ status: reaction.status, post_id: parseInt(reaction.post_id), user_id: parseInt(reaction.user_id) }
+        
+        const { status, body }=await this.patchRequest(`${this.subUrl.reaction}`, formData)
+        this.message=body['message']
+        if(status===200)  {
+        
         }   else    {  
           if(!this.message)    {
               this.message='Failed to connect'
@@ -136,9 +138,11 @@
  @media only screen and (max-width: 265px) {
   .custom_post  {
     height: 35vh;
-    margin: 92.5% 0% 92.5% 0%;
-     /* padding: 0% -1% 0% -1%; */
+    width: 25vw;
   } 
+  .custom_post_margin {
+    height: 0vh;
+  }
   .custom_home  {
     padding:0;
     
@@ -153,9 +157,11 @@
 @media only screen and (max-width: 300px) and (min-width : 265px) {
   .custom_post  {
     height: 35vh;
-    margin: 80.5% 0% 80.5% 0%;
-     /* padding: 0% -1% 0% -1%; */
+    width: 25vw;
   } 
+  .custom_post_margin {
+    height: 0vh;
+  }
   .custom_home  {
     padding:0;
     
@@ -170,9 +176,11 @@
 @media only screen and (max-width: 350px) and (min-width : 300px) {
   .custom_post  {
     height: 45vh;
-    margin: 72.5% 0% 72.5% 0%;
-     /* padding: 0% -1% 0% -1%; */
+   width: 35vw;
   } 
+  .custom_post_margin {
+    height: 0vh;
+  }
   .custom_home  {
     padding:0;
     
@@ -187,9 +195,11 @@
 @media only screen and (max-width: 445px) and (min-width : 350px) {
   .custom_post  {
     height: 45vh;
-    margin: 60.5% 0% 60.5% 0%;
-     /* padding: 0% -1% 0% -1%; */
+   width: 35vw;
   } 
+  .custom_post_margin {
+    height: 0vh;
+  }
   .custom_home  {
     padding:0;
     
@@ -205,9 +215,11 @@
 @media only screen and (max-width: 480px) and (min-width : 445px) {
   .custom_post  {
     height: 45vh;
-       margin: 10% 0% 50% 0%;
-    display: inline-block;
+    width: 35vw;
   } 
+  .custom_post_margin {
+    height: 0vh;
+  }
   .custom_home  {
     padding:0;
     
@@ -222,9 +234,11 @@
 @media only screen and (max-width: 580px) and (min-width : 480px) {
   .custom_post  {
     height:60vh;
-      margin: 10% 0% 30% 0%;
-    display: inline-block;
+    width: 50vw;
   } 
+  .custom_post_margin {
+    height: 0vh;
+  }
   .custom_home  {
      margin: 0% 0% 0% 0%;
      padding: 0%;
@@ -239,9 +253,11 @@
 @media only screen and (max-width: 630px) and (min-width : 580px) {
   .custom_post  {
     height:60vh;
-      margin: 10% 0% 35% 0%;
-    display: inline-block;
+    width: 50vw;
   } 
+  .custom_post_margin {
+    height: 0vh;
+  }
   .custom_home  {
      margin: 0% 0% 0% 0%;
      padding: 0%;
@@ -257,9 +273,11 @@
 @media only screen and (max-width: 700px) and (min-width : 630px) {
   .custom_post  {
     height:60vh;
-     margin: 10% 0% 40% 0%;
-    display: inline-block;
+    width: 50vw;
   } 
+  .custom_post_margin {
+    height: 3vh;
+  }
   .custom_home  {
      margin: 0% 0% 0% 0%;
      padding: 0%;
@@ -275,9 +293,11 @@
 @media only screen and (max-width: 768px) and (min-width : 700px) {
   .custom_post  {
     height: 70vh;
-     margin: 10% 0% 30% 0%;
-    display: inline-block;
+    width: 60vw;
   } 
+  .custom_post_margin {
+    height: 10vh;
+  }
   .custom_home  {
      margin: 0% 5% 0% 5%;
   } 
@@ -293,9 +313,11 @@
 @media only screen and (max-width: 992px) and (min-width : 768px) {
   .custom_post  {
     height: 70vh;
-     margin: 10% 0% 30% 0%;
-    display: inline-block;
+    width: 60vw;
   } 
+  .custom_post_margin {
+    height: 10vh;
+  }
   .custom_home  {
      margin: 0% 10% 0% 10%;
   } 
@@ -310,9 +332,11 @@
 @media only screen and (max-width: 1200px) and (min-width : 992px) {
   .custom_post  {
     height: 70vh;
-   margin: 10% 0% 25% 0%;
-    display: inline-block;
+    width: 60vw;
   } 
+  .custom_post_margin {
+    height: 10vh;
+  }
   .custom_home  {
     margin: 0% -25% 0% 2%;
   } 
@@ -327,9 +351,11 @@
 @media only screen and (min-width : 1200px) {
   .custom_post  {
     height: 70vh;
-    margin: 10% 0% 25% 0%;
-    display: inline-block;
+    width: 60vw;
   } 
+  .custom_post_margin {
+    height: 10vh;
+  }
   .custom_home  {
     margin: 0% -10% 0 15%;
   } 

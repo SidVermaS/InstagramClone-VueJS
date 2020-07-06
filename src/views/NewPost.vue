@@ -2,7 +2,7 @@
   <div class="custom_background custom_direct_background">
       <AlertDialog v-bind:message="message" ref="alertdialog" />
          <b-card no-body>
-            <b-row style="height: 55vh; ">
+            <b-row style="height: 65vh;">
                 <input type="file" ref="fileInput" v-on:change="onFileChanged" style="display: none;"   />
                 <span v-if="imageFile" class="mx-auto mb-2">
                     <b-img :src="imageUrl" v-on:click="$refs.fileInput.click()" class="select_image" />
@@ -14,9 +14,8 @@
                 </span>
             </b-row>
             <b-row style="height: 20vh;" class="caption_row">
-               <hr class="my-3" /> 
               <b-input-group class="custom_input_group">
-                <b-form-textarea rows="1" max-rows="2" placeholder="Caption..." size="sm" v-model="formData.caption" class="custom_textarea_comment"></b-form-textarea>
+                <b-form-textarea rows="1" max-rows="2" placeholder="Caption..." size="sm" v-model="caption" class="custom_textarea_comment"></b-form-textarea>
                 <b-input-group-append>
                   <span v-on:click="addPost" class="custom_textarea_comment_button custom_secondary_color">Post</span>
                 </b-input-group-append>
@@ -44,40 +43,36 @@
       return  {
         imageFile: null,
         imageUrl: null,
-        formData:   {
-            caption: '',
-        },
+        caption: '',
         message: '',
       }
     },
     methods:  {
       
-        async addPost(comment)    {
-                    const formData={
-                        comment_text: comment.comment_text,
-                        post_id: comment.post_id,
-                        user_id: this.$store.state.user.user_id,
-                        name: this.$store.state.user.name                    
-                    }
-                   
-                    const { status, body }=await this.postRequest(this.subUrl.post, formData)
-                    const message=body['message']
+        async addPost()    {
+              const photo_url=await this.uploadPhoto()
+              if(photo_url) {
+                const formData={
+                      caption: this.caption,
+                      user_id: this.$store.state.user.user_id,       
+                      photo_url: photo_url
+                  }
+                  
+                  const { status, body }=await this.postRequest(this.subUrl.post, formData)
+                  this.message=body['message']
 
-                    if(status===201)  {
-                        formData.comment_id=body['comment_id']
-                        if(this.posts[comment.index].comments===undefined) {
-                            this.posts[comment.index].comments=[]
-                        }
-                        // this.posts[comment.index].comments.push(formData)
-                        // this.posts[comment.index].comments=this.posts[comment.index].comments
-                        this.posts[comment.index].comments.splice(formData)
-                    } else if(!message)  {
-                        message='Failed to connect'
-                        this.emit('show-dialog', message)                        
-                    } else  {
-                        this.emit('show-dialog',message)
-                    }
-                
+                  if(status===201)  {
+                      this.imageFile=null
+                      this.imageUrl=null
+                      this.caption=''
+                      this.$refs.alertdialog.showDialog()  
+                  } else if(!this.message)  {
+                      this.message='Failed to connect'
+                      this.$refs.alertdialog.showDialog()                       
+                  } else  {
+                    this.$refs.alertdialog.showDialog()
+                  }
+              }
             },
              onFileChanged: async function(e)   {
                 this.imageFile=e.target.files[0]
@@ -85,6 +80,21 @@
                     this.imageUrl=URL.createObjectURL(this.imageFile)
                     console.log('imageFile: ',this.imageFile)
                 }
+            },
+            async uploadPhoto() {
+              const formData=new FormData()
+              formData.append('file', this.imageFile)
+              const { status, body }=await this.multipartRequest(`${this.subUrl.upload}?file_type=posts`, formData)
+              this.message=body['message']
+              if(status===201)  {
+              }  else if(!this.message)  {
+                this.message='Failed to connect'
+                this.$refs.alertdialog.showDialog()                    
+              } else  {
+                 this.$refs.alertdialog.showDialog()
+              } 
+              console.log('pu: ',body['photo_url'])
+              return body['photo_url']
             },
       navigateToHome: async function(post_id) {
         this.$router.push({ name: 'Home', })
@@ -119,8 +129,8 @@
         height: 200px;
     }
     .select_image   {
-        width: 360px;
-        height: 360px;
+        width: 370px;
+        height: 370px;
     }
         .custom_textarea_comment, .custom_textarea_comment:focus  {
         /* margin-right: 3.5%; */
@@ -132,7 +142,7 @@
        font-size: 80%;
        font-weight: 700;       
        text-align: center;
-       margin: 120% 15% 0% 40%;
+       margin: 120% 0% 0% 40%;
     }
  @media only screen and (max-width: 265px) {
   .custom_home  {
@@ -141,6 +151,9 @@
   .custom_direct_background  {
       padding: 0% 0% 0% 0%; 
         overflow-y: hidden;
+    }
+          .caption_row  {
+      margin: -5% 5% 1.5% 5%;
     }
 }
 @media only screen and (max-width: 300px) and (min-width : 265px) {
@@ -151,6 +164,9 @@
       padding: 0% 0% 0% 0%; 
         overflow-y: hidden;
     }
+          .caption_row  {
+      margin: -5% 5% 1.5% 5%;
+    }
 }
 @media only screen and (max-width: 350px) and (min-width : 300px) {
   .custom_home  {
@@ -160,6 +176,9 @@
       padding: 0% 0% 0% 0%; 
         overflow-y: hidden;
     }
+          .caption_row  {
+      margin: -5% 5% 1.5% 5%;
+    }
 }
 @media only screen and (max-width: 445px) and (min-width : 350px) {
   .custom_home  {
@@ -168,6 +187,9 @@
   .custom_direct_background  {
       padding: 0% 0% 0% 0%; 
         overflow-y: hidden;
+    }
+          .caption_row  {
+      margin: -5% 5% 1.5% 5%;
     }
 }
      /* Custom, iPhone Retina */ 
@@ -179,6 +201,9 @@
       padding: 0% 0% 0% 0%; 
         overflow-y: hidden;
     }
+          .caption_row  {
+      margin: -5% 5% 1.5% 5%;
+    }
 }
 @media only screen and (max-width: 580px) and (min-width : 480px) {
  .custom_home  {
@@ -188,6 +213,9 @@
       padding: 0% 0% 0% 0%; 
         overflow-y: hidden;
     }
+          .caption_row  {
+      margin: -5% 3% 1.5% 3%;
+    }
 }
 @media only screen and (max-width: 630px) and (min-width : 580px) {
   .custom_home  {
@@ -196,6 +224,9 @@
   .custom_direct_background  {
       padding: 0% 0% 0% 0%; 
         overflow-y: hidden;
+    }
+          .caption_row  {
+      margin: -5% 3% 1.5% 3%;
     }
 }
 /* Extra Small Devices, Phones */ 
@@ -207,6 +238,9 @@
       padding: 0% 7% 0% 7%; 
         overflow-y: hidden;
     }
+          .caption_row  {
+      margin: -5% 3% 1.5% 3%;
+    }
 }
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width: 768px) and (min-width : 700px) {
@@ -216,6 +250,9 @@
   .custom_direct_background  {
        padding: 0% 7% 0% 7%; 
         overflow-y: hidden;
+    }
+          .caption_row  {
+      margin: -5% 3% 1.5% 3%;
     }
 }
 
@@ -228,6 +265,9 @@
        padding: 1% 8.5% 1% 8.5%; 
         overflow-y: hidden;
     }
+      .caption_row  {
+      margin: -5% 4% 1.5% 3%;
+    }
 }
 /* Medium Devices, Desktops */
 @media only screen and (max-width: 1200px) and (min-width : 992px) {
@@ -238,6 +278,9 @@
         padding: 1% 17.5% 1% 17.5%; 
         overflow-y: hidden;
     }
+      .caption_row  {
+      margin: -5% 4% 1.5% 3%;
+    }
 }
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
@@ -247,6 +290,9 @@
   .custom_direct_background  {
       padding: 1% 22.5% 1% 22.5%; 
         overflow-y: hidden;
+    }
+    .caption_row  {
+      margin: -5% 4% 1.5% 3%;
     }
 }
 

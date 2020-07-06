@@ -117,4 +117,85 @@
        text-align: center;
        padding: 50% 0% 0% 0%;
     }
+
+  
+ @media only screen and (max-width: 265px) {
+      .custom_image {
+  width: 100%;
+  height: 300px;
+  }
+}
+@media only screen and (max-width: 300px) and (min-width : 265px) {
+      .custom_image {
+  width: 100%;
+  height: 300px;
+  }
+}
+@media only screen and (max-width: 350px) and (min-width : 300px) {
+      .custom_image {
+  width: 100%;
+  height: 300px;
+  }
+}
+@media only screen and (max-width: 445px) and (min-width : 350px) {
+     .custom_image {
+  width: 100%;
+  height: 300px;
+  }
+}
+     /* Custom, iPhone Retina */ 
+@media only screen and (max-width: 480px) and (min-width : 445px) {
+      .custom_image {
+  width: 100%;
+  height: 400px;
+  }
+}
+@media only screen and (max-width: 580px) and (min-width : 480px) {
+      .custom_image {
+  width: 100%;
+  height: 400px;
+  }
+}
+@media only screen and (max-width: 630px) and (min-width : 580px) {
+      .custom_image {
+  width: 100%;
+  height: 400px;
+  }
+}
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width: 700px) and (min-width : 630px) {
+      .custom_image {
+  width: 100%;
+  height: 450px;
+  }
+}
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width: 768px) and (min-width : 700px) {
+      .custom_image {
+  width: 100%;
+  height: 500px;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width: 992px) and (min-width : 768px) {
+      .custom_image {
+  width: 100%;
+  height: 500px;
+  }
+}
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 1200px) and (min-width : 992px) {
+    .custom_image {
+  width: 100%;
+  height: 500px;
+  }
+}
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+     .custom_image {
+  width: 100%;
+  height: 500px;
+  }
+}
 </style>

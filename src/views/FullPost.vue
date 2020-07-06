@@ -142,15 +142,17 @@
         
                 const formData={ status: this.post.status===null || this.post.status!=='like'?'like':'remove', post_id: this.post.post_id, user_id: this.post.user_id }
                 
+                this.post.status=formData.status
+                if(reaction.status==='like') {
+                    this.post.reactions_count=this.post.reactions_count+1
+                } else  {
+                    this.post.reactions_count=this.post.reactions_count-1
+                }
+
                 const { status, body }=await this.patchRequest(`${this.subUrl.reaction}`, formData)
                 this.message=body['message']
                 if(status===200)  {
-                    this.post.status=formData.status
-                    if(reaction.status==='like') {
-                        this.post.reactions_count=this.post.reactions_count+1
-                    } else  {
-                        this.post.reactions_count=this.post.reactions_count-1
-                    }
+                   
                 }   else    {  
                     if(!this.message)    {
                         this.message='Failed to connect'
@@ -210,7 +212,10 @@
     margin: 0% 5% 0% 5%;
 }
 
-
+    .custom_image {
+  width: 100%;
+  height: 500px;
+}
 
 
 

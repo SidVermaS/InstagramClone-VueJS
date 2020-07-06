@@ -139,10 +139,7 @@ export default {
   padding: 2% 0% 2% 2%;
   text-align: left;
 }
-.custom_image {
-  width: 100%;
-  height: 100%;
-}
+
 .custom_user_photo  {
   width: 30px;
   height: 30px;
