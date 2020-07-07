@@ -15,6 +15,7 @@
                 <span v-on:click="navigateToUser" class="custom_secondary_color" id="custom_view">View</span>
             </b-col>
         </b-row>
+        
     </div>
 </template>
          

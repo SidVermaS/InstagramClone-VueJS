@@ -6,24 +6,32 @@
             <p id="custom_user_name">{{this.$store.state.user.name}}</p>      
             <span id="custom_user_role" class="custom_faded_color">{{this.$store.state.user.role}}</span>
         </span>
-            <b-row style="margin-top: 1%;">
-                <b-col cols="3">
-                    <span class="custom_faded_color custom_personal_suggestion custom_font_size" >Suggestions For You</span>
-                </b-col>
-                <b-col cols="1">
-                    <router-link to="\explore">
-                        <span class="custom_personal_suggestion custom_font_size" style="margin-left: -110%;">See All</span>
-                    </router-link>     
-                </b-col>
-            </b-row>
-            <div style="margin-top: 0.7%; ">
-                <div v-for="(user, index) in users" :key="index" >
-                    <UserSuggestions :user="user" :index="index" v-on:navigate-to-user="navigateToUser" />  
-                </div>   
-            </div>
-
-
-
+        <b-row style="margin-top: 1%;">
+            <b-col cols="3">
+                <span class="custom_faded_color custom_personal_suggestion custom_font_size" >Suggestions For You</span>
+            </b-col>
+            <b-col cols="1">
+                <router-link to="\explore">
+                    <span class="custom_personal_suggestion custom_font_size" style="margin-left: -110%;">See All</span>
+                </router-link>     
+            </b-col>
+        </b-row>
+        <div style="margin-top: 0.7%; ">
+            <div v-for="(user, index) in users" :key="index" >
+                <UserSuggestions :user="user" :index="index" v-on:navigate-to-user="navigateToUser" />  
+            </div>   
+        </div>
+        <div class="custom_faded_color custom_extras extras_font_size">
+            <ul>
+                <li>About &bull;</li> <li>Help &bull;</li> <li>Press &bull;</li> <li>API &bull;</li> <li>Jobs &bull;</li> <li>Privacy &bull;</li> <li>Terms &bull;</li>
+            </ul>     
+            <ul style="margin-top: -1%;">   
+                 <li>Locations &bull;</li>  <li>Top Accounts &bull;</li> <li>Hashtags &bull;</li>  <li>Language</li>     
+            </ul>
+        </div>
+        <div style="margin-left: 0.3%;" class="custom_faded_color extras_font_size">
+            FOR EDUCATIONAL PURPOSES ONLY
+        </div>     
 
 
    </div>      
@@ -78,6 +86,17 @@
 </script>
 
 <style scoped>
+    li{
+    display:inline;
+}
+    .custom_extras  {
+        margin: 2% 0% 0% -2.7%;
+        
+        width: 80%;
+    }
+    .extras_font_size   {
+        font-size: 11px;
+    }
     #custom_user_photo_side {
           /* width: 10%;
         height: 95%; */
@@ -86,7 +105,7 @@
         margin: -1.3% 1% 0% 0%;
     }  
     #custom_suggestion  {
-        padding: 8% 0% 0% 1.25%;
+        padding: 5% 0% 0% 1.25%;
         text-align: left;
         float: left;
     }
