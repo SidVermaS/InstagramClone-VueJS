@@ -19,10 +19,10 @@ npm run build
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Note
-```
+This project is for educational purpose only.
 
-This project is for Educational Purpose only.
-````
+### Screenshots
+```
 
 ![Screenshot 1](./screenshots/Screenshot1.png)
 
@@ -31,3 +31,4 @@ This project is for Educational Purpose only.
 ![Screenshot 3](./screenshots/Screenshot3.png)
 
 ![Screenshot 4](./screenshots/Screenshot4.png)
+```
