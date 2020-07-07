@@ -1,4 +1,4 @@
-# eventapp
+# instagramclone
 
 ## Project setup
 ```
@@ -17,3 +17,17 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Note
+```
+
+This project is for Educational Purpose only.
+````
+
+![Screenshot 1](./screenshots/Screenshot1.png)
+
+![Screenshot 2](./screenshots/Screenshot2.png)
+
+![Screenshot 3](./screenshots/Screenshot3.png)
+
+![Screenshot 4](./screenshots/Screenshot4.png)
