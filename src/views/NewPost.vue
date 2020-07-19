@@ -84,7 +84,7 @@
             async uploadPhoto() {
               const formData=new FormData()
               formData.append('file', this.imageFile)
-              const { status, body }=await this.multipartRequest(`${this.subUrl.upload}?file_type=posts`, formData)
+              const { status, body }=await this.postFormDataRequest(`${this.subUrl.upload}?file_type=posts`, formData)
               this.message=body['message']
               if(status===201)  {
               }  else if(!this.message)  {

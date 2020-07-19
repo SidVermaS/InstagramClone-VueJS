@@ -34,3 +34,10 @@ Screenshot 3
 
 Screenshot 4
 ![Screenshot 4](./screenshots/Screenshot4.png)
+
+### Other Tech Stacks
+Mobile App: Flutter
+https://github.com/SiddharthVermaS/InstagramClone-Flutter
+
+Backend: Node.js
+https://github.com/SiddharthVermaS/InstagramClone-NodeJs-MySQL

@@ -82,7 +82,7 @@ export default  {
                 })
             })    
         },
-        multipartRequest: function(url, formData)   {
+        postFormDataRequest: function(url, formData)   {
             return new Promise((resolve)=>  {
                 const options={
                     method: 'POST',
