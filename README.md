@@ -35,7 +35,10 @@ Screenshot 3
 Screenshot 4
 ![Screenshot 4](./screenshots/Screenshot4.png)
 
-### Other Tech Stacks
+### Tech Stacks
+Web App: Vue.js
+https://github.com/SiddharthVermaS/InstagramClone-VueJS
+
 Mobile App: Flutter
 https://github.com/SiddharthVermaS/InstagramClone-Flutter
 
